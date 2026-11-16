@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en" data-studio-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Studio — 220 Lab · Film Script Lab</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/apple-product.css?v=20261116" />
+  <link rel="stylesheet" href="styles/script-lab-studio.css?v=20261116" />
+</head>
+<body class="studio-body">
+
+  <!-- APPROVAL ACCESS GATE (Shown until server-verified approved email, invite code, or Stripe session) -->
+  <div class="gate-backdrop" id="studio-gate">
+    <header class="apple-bar">
+      <div class="apple-bar-inner">
+        <a class="wordmark" href="index.html">
+          <span class="tally-dot" aria-hidden="true"></span>
+          <span class="wordmark-brand">220 Lab</span>
+          <span class="wordmark-divider" aria-hidden="true"></span>
+          <span class="wordmark-product">Film Script Lab</span>
+        </a>
+        <div class="bar-actions">
+          <a class="btn-pill secondary sm" href="index.html">← Product Overview</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="gate-card-wrap">
+      <div class="gate-card">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="tally-dot"></span>
+          <span style="font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-2);">220 Lab Access Gate</span>
+        </div>
+        <h1 style="font-family:var(--font-display);font-size:28px;letter-spacing:-0.03em;margin-bottom:6px;">Unlock Film Script Lab</h1>
+        <p style="font-size:14.5px;color:var(--text-2);">
+          Software access requires an approved 220 Lab waitlist email, an <code>SL-</code> invite code, or a Founding Studio Pass.
+        </p>
+
+        <div class="gate-tabs" role="tablist">
+          <button type="button" class="gate-tab active" data-gate-tab="signin">Sign In</button>
+          <button type="button" class="gate-tab" data-gate-tab="apply">Join Waitlist</button>
+          <button type="button" class="gate-tab" data-gate-tab="pass">Founding Pass</button>
+        </div>
+
+        <!-- Tab 1: Sign In with Approved Email or Invite Code -->
+        <form id="gate-signin-form" data-gate-pane="signin">
+          <div class="form-field">
+            <label for="gate-email">Approved Email</label>
+            <input type="email" id="gate-email" class="apple-input" placeholder="director@studio.com" />
+          </div>
+          <div class="form-field">
+            <label for="gate-code">Invite / Approval Code <span style="font-weight:400;color:var(--text-2);">(optional if email approved)</span></label>
+            <input type="text" id="gate-code" class="apple-input" placeholder="SL-XXXX-XXXX" style="font-family:var(--mono);text-transform:uppercase;" />
+          </div>
+          <button type="submit" class="btn-pill primary lg" id="gate-signin-btn" style="width:100%;">
+            Verify Approval &amp; Enter Studio →
+          </button>
+          <div id="gate-signin-msg" class="status-banner" hidden></div>
+        </form>
+
+        <!-- Tab 2: Request Waitlist Approval -->
+        <form id="gate-apply-form" data-gate-pane="apply" hidden>
+          <div class="form-field">
+            <label for="gate-apply-name">Full Name</label>
+            <input type="text" id="gate-apply-name" class="apple-input" placeholder="Alex Garland" required />
+          </div>
+          <div class="form-field">
+            <label for="gate-apply-email">Email</label>
+            <input type="email" id="gate-apply-email" class="apple-input" placeholder="alex@dnafilms.com" required />
+          </div>
+          <div class="form-field">
+            <label for="gate-apply-role">Discipline</label>
+            <select id="gate-apply-role" class="apple-select">
+              <option value="Director / Showrunner">Director / Showrunner</option>
+              <option value="Screenwriter">Screenwriter</option>
+              <option value="Documentary Editor">Documentary Editor</option>
+              <option value="Producer / Studio">Producer / Studio</option>
+              <option value="Journalist / Essayist">Journalist / Essayist</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="gate-apply-yt">First YouTube Video You Want to Cut <span style="font-weight:400;color:var(--text-2);">(optional)</span></label>
+            <input type="url" id="gate-apply-yt" class="apple-input" placeholder="https://www.youtube.com/watch?v=..." />
+          </div>
+          <button type="submit" class="btn-pill primary lg" id="gate-apply-btn" style="width:100%;">
+            Request Studio Approval
+          </button>
+          <div id="gate-apply-msg" class="status-banner" hidden></div>
+        </form>
+
+        <!-- Tab 3: Instant Founding Pass -->
+        <div id="gate-pass-pane" data-gate-pane="pass" hidden>
+          <div style="padding:16px;border-radius:16px;background:var(--surface-2);border:1px solid var(--line);margin-bottom:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+              <strong style="font-size:17px;">220 Lab Founding Pass</strong>
+              <span style="font-family:var(--font-display);font-size:26px;font-weight:700;">$249</span>
+            </div>
+            <p style="font-size:13.5px;color:var(--text-2);line-height:1.48;">
+              One-time lifetime license. Bypasses the waitlist immediately upon Stripe payment confirmation, with unlimited YouTube video ingestions and E&amp;O CSV clearance exports.
+            </p>
+          </div>
+          <button type="button" class="btn-pill cinema lg" id="gate-buy-lifetime" style="width:100%;">
+            Checkout with Stripe — $249
+          </button>
+          <div id="gate-pass-msg" class="status-banner" hidden></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL FILM SCRIPT LAB WORKBENCH (Mounted once approved) -->
+  <main class="scriptlab-view" id="scriptlab" hidden aria-label="220 Lab · Film Script Lab Workbench"></main>
+
+  <!-- MODAL: + ADD ANY YOUTUBE VIDEO / IMPORT TRANSCRIPT -->
+  <div class="sl-modal-backdrop" id="sl-youtube-modal" hidden>
+    <div class="sl-modal" role="dialog" aria-modal="true" aria-labelledby="yt-modal-title">
+      <div class="sl-modal-head">
+        <h3 id="yt-modal-title">+ Add YouTube Video Source</h3>
+        <button type="button" class="sl-btn subtle" id="yt-modal-close">✕ Close</button>
+      </div>
+
+      <div class="sl-modal-tabs">
+        <button type="button" class="sl-modal-tab active" data-yt-tab="auto">Auto-Extract from YouTube</button>
+        <button type="button" class="sl-modal-tab" data-yt-tab="manual">Upload .SRT / .VTT / Paste</button>
+      </div>
+
+      <!-- Pane A: Edge Auto-Extract -->
+      <form id="yt-auto-form">
+        <div class="sl-modal-field">
+          <label for="yt-url-input">YouTube URL or 11-Character Video ID (Public or Unlisted)</label>
+          <input type="text" id="yt-url-input" class="sl-modal-input" placeholder="https://www.youtube.com/watch?v=... or youtu.be/..." required />
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div class="sl-modal-field">
+            <label for="yt-speaker-input">Default Speaker Name <span style="font-weight:400;">(optional)</span></label>
+            <input type="text" id="yt-speaker-input" class="sl-modal-input" placeholder="e.g. Martin Scorsese" />
+          </div>
+          <div class="sl-modal-field">
+            <label for="yt-lang-select">Preferred Caption Track</label>
+            <select id="yt-lang-select" class="sl-modal-input">
+              <option value="en">EN · English</option>
+              <option value="es">ES · Español</option>
+              <option value="fr">FR · Français</option>
+              <option value="de">DE · Deutsch</option>
+              <option value="ja">JA · 日本語</option>
+              <option value="pt">PT · Português</option>
+              <option value="it">IT · Italiano</option>
+              <option value="ko">KO · 한국어</option>
+              <option value="zh">ZH · 中文</option>
+              <option value="ru">RU · Русский</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="sl-btn primary" id="yt-auto-submit" style="width:100%;justify-content:center;padding:10px 16px;font-size:13.5px;">
+          Extract Verbatim Lines &amp; Timestamps
+        </button>
+      </form>
+
+      <!-- Pane B: Manual SRT / VTT / JSON / Text + YouTube Link -->
+      <form id="yt-manual-form" hidden>
+        <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:10px;">
+          <div class="sl-modal-field">
+            <label for="yt-man-url">YouTube URL or ID (for synced playback)</label>
+            <input type="text" id="yt-man-url" class="sl-modal-input" placeholder="https://youtu.be/..." required />
+          </div>
+          <div class="sl-modal-field">
+            <label for="yt-man-title">Video Short Label</label>
+            <input type="text" id="yt-man-title" class="sl-modal-input" placeholder="Interview Reel #1" />
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div class="sl-modal-field">
+            <label for="yt-man-speaker">Default Speaker Name</label>
+            <input type="text" id="yt-man-speaker" class="sl-modal-input" placeholder="Subject Name" />
+          </div>
+          <div class="sl-modal-field">
+            <label for="yt-man-file">Load .SRT, .VTT, or Whisper .JSON</label>
+            <input type="file" id="yt-man-file" accept=".srt,.vtt,.json,.txt" class="sl-modal-input" style="padding:6px;" />
+          </div>
+        </div>
+
+        <div class="sl-modal-field">
+          <label for="yt-man-text">Or Paste SRT / VTT / Timestamped Transcript (<code>01:24 Speaker: Spoken words</code>)</label>
+          <textarea id="yt-man-text" class="sl-modal-textarea" placeholder="00:12 INTERVIEWER: Tell me where the plane landed.&#10;00:18 SUBJECT: Anchorage. Just after midnight."></textarea>
+        </div>
+
+        <button type="submit" class="sl-btn primary" style="width:100%;justify-content:center;padding:10px 16px;font-size:13.5px;">
+          Build Verbatim SRC- Archive &amp; Link Video
+        </button>
+      </form>
+
+      <div id="yt-modal-status" class="status-banner" hidden style="margin-top:14px;"></div>
+    </div>
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api" async></script>
+  <script src="config.js?v=20261116"></script>
+  <script src="scripts/analytics.js?v=20261116"></script>
+  <script src="data/demo_sources.js?v=20261116"></script>
+  <script src="scripts/studio.js?v=20261116"></script>
+</body>
+</html>

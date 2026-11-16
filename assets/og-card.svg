@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B0C0E"/>
+      <stop offset="100%" stop-color="#171A21"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="75%" cy="28%" r="55%">
+      <stop offset="0%" stop-color="#C93B2B" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#0071E3" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0B0C0E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Top Brand Pill -->
+  <g transform="translate(76, 68)">
+    <rect x="0" y="0" width="248" height="38" rx="19" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)"/>
+    <circle cx="22" cy="19" r="5.5" fill="#C93B2B"/>
+    <text x="38" y="24" fill="#F5F5F7" font-family="-apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="0.08em">220 LAB · SCRIPTLAB.CLOUD</text>
+  </g>
+
+  <!-- Left Headline Copy -->
+  <text x="76" y="198" fill="#F5F5F7" font-family="-apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif" font-size="64" font-weight="700" letter-spacing="-0.03em">Film Script Lab</text>
+  <text x="76" y="262" fill="#A1A1A6" font-family="-apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif" font-size="30" font-weight="500" letter-spacing="-0.015em">Turn any YouTube video into a</text>
+  <text x="76" y="302" fill="#A1A1A6" font-family="-apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif" font-size="30" font-weight="500" letter-spacing="-0.015em">verbatim shooting screenplay.</text>
+
+  <!-- 4 Mode Chips -->
+  <g transform="translate(76, 356)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700">
+    <rect x="0" y="0" width="112" height="32" rx="6" fill="rgba(22,101,62,0.28)" stroke="#2EA063" stroke-width="1.5"/>
+    <text x="16" y="21" fill="#8CE8B1">ORIGINAL</text>
+
+    <rect x="124" y="0" width="106" height="32" rx="6" fill="rgba(180,98,12,0.28)" stroke="#E08B2C" stroke-width="1.5" stroke-dasharray="5 3"/>
+    <text x="141" y="21" fill="#F8C17C">ADAPTED</text>
+
+    <rect x="242" y="0" width="146" height="32" rx="6" fill="rgba(109,40,217,0.28)" stroke="#A78BFA" stroke-width="1.5" stroke-dasharray="2 3"/>
+    <text x="257" y="21" fill="#D4BFFF">AI SUGGESTION</text>
+
+    <rect x="400" y="0" width="104" height="32" rx="6" fill="rgba(100,116,139,0.28)" stroke="#94A3B8" stroke-width="1.5"/>
+    <text x="418" y="21" fill="#CBD5E1">WRITTEN</text>
+  </g>
+
+  <text x="76" y="546" fill="#6E6E73" font-family="-apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="500">Permanent SRC- SHA-1 Provenance · Fountain · Courier Prime PDF · E&amp;O CSV</text>
+
+  <!-- Right Mock Screenplay Sheet -->
+  <g transform="translate(658, 96)">
+    <rect x="0" y="0" width="466" height="444" rx="10" fill="#F6F1E5" stroke="rgba(255,255,255,0.2)"/>
+    <rect x="0" y="0" width="466" height="6" rx="3" fill="#C93B2B"/>
+    <text x="32" y="44" fill="#181715" font-family="Courier New, Courier, monospace" font-size="15" font-weight="700">1   INT. EDITING ROOM - NIGHT   1</text>
+    <line x1="32" y1="58" x2="434" y2="58" stroke="#DBD2BE" stroke-width="2"/>
+
+    <rect x="32" y="78" width="402" height="128" rx="6" fill="rgba(22,101,62,0.08)" stroke="rgba(22,101,62,0.35)"/>
+    <rect x="32" y="78" width="5" height="128" fill="#16653E"/>
+    <rect x="48" y="92" width="76" height="20" rx="4" fill="#16653E"/>
+    <text x="56" y="106" fill="#FFFFFF" font-family="-apple-system, Arial, sans-serif" font-size="10.5" font-weight="700">ORIGINAL</text>
+    <text x="134" y="106" fill="#5D584E" font-family="Courier New, monospace" font-size="11">SRC-7f21a904c1 · 02:14</text>
+    <text x="233" y="136" text-anchor="middle" fill="#181715" font-family="Courier New, Courier, monospace" font-size="14" font-weight="700">SPEAKER</text>
+    <text x="72" y="160" fill="#181715" font-family="Courier New, Courier, monospace" font-size="13.5">You cannot connect the dots</text>
+    <text x="72" y="180" fill="#181715" font-family="Courier New, Courier, monospace" font-size="13.5">looking forward; only backward.</text>
+
+    <rect x="32" y="226" width="402" height="122" rx="6" fill="rgba(180,98,12,0.09)" stroke="rgba(154,82,8,0.45)" stroke-dasharray="6 4"/>
+    <rect x="48" y="240" width="72" height="20" rx="4" fill="#9A5208"/>
+    <text x="56" y="254" fill="#FFFFFF" font-family="-apple-system, Arial, sans-serif" font-size="10.5" font-weight="700">ADAPTED</text>
+    <text x="130" y="254" fill="#5D584E" font-family="Courier New, monospace" font-size="11">Linked to YouTube · 04:08</text>
+    <text x="233" y="284" text-anchor="middle" fill="#181715" font-family="Courier New, Courier, monospace" font-size="14" font-weight="700">NARRATOR (V.O.)</text>
+    <text x="72" y="308" fill="#181715" font-family="Courier New, Courier, monospace" font-size="13.5">Follow the money and the hardware</text>
+    <text x="72" y="328" fill="#181715" font-family="Courier New, Courier, monospace" font-size="13.5">instead. Who signed off?</text>
+
+    <text x="32" y="396" fill="#5D584E" font-family="Courier New, Courier, monospace" font-size="13">The camera holds on the monitor glow.</text>
+  </g>
+</svg>

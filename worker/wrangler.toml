@@ -1,0 +1,26 @@
+name = "scriptlab-api"
+main = "index.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+PUBLIC_SITE_URL = "https://scriptlab.cloud"
+ALLOWED_ORIGINS = "https://scriptlab.cloud,https://www.scriptlab.cloud,https://zhanpetrov.github.io"
+PRODUCT_NAME = "220 Lab · Film Script Lab"
+STRIPE_CURRENCY = "usd"
+PRICE_CREATOR_CENTS = "2900"
+PRICE_STUDIO_CENTS = "7900"
+PRICE_LIFETIME_CENTS = "24900"
+
+[[kv_namespaces]]
+binding = "SCRIPTLAB_KV"
+id = "cda828eb5a0f4cfa88122020bc316bbe"
+
+# Secrets configured via `npx wrangler secret put` (NEVER stored in repo):
+# - AUTH_SIGNING_SECRET     (HMAC-SHA256 secret for 30-day approved Studio tokens)
+# - ADMIN_ACCESS_KEY        (Admin bearer key for /admin.html & CLI waitlist approvals)
+# - FOUNDER_INVITE_CODE     (Optional master founder invite code)
+# - STRIPE_SECRET_KEY       (Zhan Petrov Stripe sk_live_... or rk_live_...)
+# - STRIPE_WEBHOOK_SECRET   (Zhan Petrov Stripe whsec_...)
+# - STRIPE_PRICE_CREATOR    (Optional Stripe Price ID price_... for $29/mo)
+# - STRIPE_PRICE_STUDIO     (Optional Stripe Price ID price_... for $79/mo)
+# - STRIPE_PRICE_LIFETIME   (Optional Stripe Price ID price_... for $249 Founding Pass)

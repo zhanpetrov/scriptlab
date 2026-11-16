@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>220 Lab · Film Script Lab — Turn Any YouTube Video Into a Shooting Screenplay</title>
+  <meta name="description" content="Paste any YouTube video — interviews, rehearsals, documentary archives, lectures, or livestreams. Search timestamped dialogue, build Courier Prime scenes in 4 provenance modes, and export Fountain, PDF, and E&amp;O clearance ledgers." />
+  <link rel="canonical" href="https://scriptlab.cloud/" />
+
+  <!-- Open Graph / iMessage / Social Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="220 Lab · Film Script Lab" />
+  <meta property="og:url" content="https://scriptlab.cloud/" />
+  <meta property="og:title" content="220 Lab · Film Script Lab — Verbatim YouTube-to-Screenplay Studio" />
+  <meta property="og:description" content="Turn any YouTube video into a shooting screenplay with permanent SRC- SHA-1 timestamp provenance, 4 dialogue modes, Fountain, Courier Prime PDF, and E&amp;O CSV." />
+  <meta property="og:image" content="https://scriptlab.cloud/assets/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="220 Lab · Film Script Lab" />
+  <meta name="twitter:description" content="Turn any YouTube video into a shooting screenplay with frame-accurate SRC- provenance." />
+  <meta name="twitter:image" content="https://scriptlab.cloud/assets/og-card.jpg" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/apple-product.css?v=20261116" />
+</head>
+<body id="top">
+
+  <!-- STICKY APPLE FROSTED GLASS BAR -->
+  <header class="apple-bar">
+    <div class="apple-bar-inner">
+      <a class="wordmark" href="#top" aria-label="220 Lab Film Script Lab Home">
+        <span class="tally-dot" aria-hidden="true"></span>
+        <span class="wordmark-brand">220 Lab</span>
+        <span class="wordmark-divider" aria-hidden="true"></span>
+        <span class="wordmark-product">Film Script Lab</span>
+      </a>
+
+      <nav class="bar-nav" aria-label="Primary">
+        <a class="bar-link" href="#live-preview">Live Workbench</a>
+        <a class="bar-link" href="#provenance">4-Mode Provenance</a>
+        <a class="bar-link" href="#capabilities">Capabilities</a>
+        <a class="bar-link" href="#pricing">Pricing</a>
+        <a class="bar-link" href="#waitlist">Waitlist</a>
+        <a class="bar-link" href="#faq">FAQ</a>
+      </nav>
+
+      <div class="bar-actions">
+        <button type="button" class="theme-btn" id="theme-toggle" title="Switch Light / Dark appearance" aria-label="Toggle color theme">◐</button>
+        <a class="btn-pill secondary sm" href="#waitlist" id="nav-status-btn">Check Approval</a>
+        <a class="btn-pill primary sm" href="app.html" id="nav-launch-btn">Launch Studio →</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="eyebrow-pill">
+        <span class="tally-dot" style="width:7px;height:7px;"></span>
+        <span>220 Lab Filmmaking Software · Approval Beta &amp; Founding Pass</span>
+      </div>
+
+      <h1 class="hero-title">
+        Any YouTube video.<br />
+        <span class="gradient-span">One shooting screenplay.</span>
+      </h1>
+
+      <p class="hero-lede">
+        Paste any interview, rehearsal, documentary archive, deposition, or lecture on YouTube.
+        Search every spoken word, drag verbatim beats onto Courier Prime pages, and preserve cryptographic
+        <code>SRC-</code> provenance from first assembly to E&amp;O legal clearance.
+      </p>
+
+      <div class="hero-cta-row">
+        <a class="btn-pill primary lg" href="#waitlist">Request Early Access</a>
+        <button type="button" class="btn-pill cinema lg" data-checkout-tier="lifetime">Buy Founding Pass — $249</button>
+        <a class="btn-pill secondary lg" href="#live-preview">Try Live Demo ↓</a>
+      </div>
+
+      <div class="hero-proof-strip">
+        <span><code>SRC-sha1</code> Frame-Accurate Links</span>
+        <span>·</span>
+        <span>4 Unmistakable Dialogue Modes</span>
+        <span>·</span>
+        <span>Exports <code>.fountain</code>, <code>12pt PDF</code> &amp; <code>E&amp;O CSV</code></span>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE LIVE WORKBENCH SHOWCASE -->
+    <section class="showcase-wrap" id="live-preview" aria-label="Interactive Film Script Lab Preview">
+      <div class="macos-window">
+        <div class="macos-titlebar">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div class="macos-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+            <span style="font-size:12.5px;font-weight:700;letter-spacing:0.03em;color:#ece9e1;">220 Lab · Film Script Lab — Interactive Demo</span>
+          </div>
+
+          <div class="showcase-source-tabs" id="demo-source-tabs" role="tablist" aria-label="Demo YouTube video sources"></div>
+        </div>
+
+        <form class="showcase-url-bar" id="demo-custom-url-form">
+          <span style="font-size:12px;font-weight:600;color:#9ba1b0;">YouTube Source URL:</span>
+          <input
+            type="url"
+            id="demo-custom-url"
+            class="showcase-url-input"
+            placeholder="Paste any https://www.youtube.com/watch?v=... or youtu.be/... to ingest into Studio"
+            aria-label="Paste any YouTube URL"
+          />
+          <button type="submit" class="btn-pill primary sm">+ Ingest Video in Studio</button>
+        </form>
+
+        <div class="showcase-grid">
+          <!-- Col 1: Verbatim YouTube Archive -->
+          <div class="sc-col">
+            <div class="sc-col-head">
+              <span>YouTube Dialogue Archive</span>
+              <span id="demo-line-count">0 lines</span>
+            </div>
+            <div class="sc-search-wrap">
+              <input type="search" id="demo-search" placeholder="Search spoken words, speaker, SRC-id…" aria-label="Search demo archive" />
+            </div>
+            <div class="sc-archive-cards" id="demo-archive-list"></div>
+          </div>
+
+          <!-- Col 2: Live Courier Prime Screenplay Page -->
+          <div class="sc-col">
+            <div class="sc-col-head">
+              <span>Courier Prime Screenplay</span>
+              <div style="display:flex;gap:6px;">
+                <button type="button" class="sc-mini-btn" id="demo-add-ai">+ AI Bridge</button>
+                <button type="button" class="sc-mini-btn" id="demo-add-written">+ Written</button>
+                <button type="button" class="sc-mini-btn" id="demo-reset-script">Reset</button>
+              </div>
+            </div>
+            <div class="sc-paper-stage">
+              <div class="sc-paper" id="demo-paper"></div>
+            </div>
+          </div>
+
+          <!-- Col 3: Synced YouTube Source Monitor -->
+          <div class="sc-col">
+            <div class="sc-col-head">
+              <span>Synced YouTube Monitor</span>
+              <span id="demo-player-status">Ready</span>
+            </div>
+            <div class="sc-film-body">
+              <div class="sc-yt-box">
+                <div id="landing-yt-player"></div>
+              </div>
+              <div class="sc-inspector" id="demo-inspector"></div>
+              <div class="sc-inspector" style="border-top:2px solid #c93b2b;">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#ff9f93;margin-bottom:4px;">Ready for Your Own Footage?</div>
+                <p style="color:#a4a8b3;line-height:1.45;margin-bottom:10px;">
+                  Approved 220 Lab members &amp; Founding Pass holders can load unlimited public or unlisted YouTube videos, upload Whisper <code>.srt</code>/<code>.vtt</code> transcripts, and export full screenplays.
+                </p>
+                <a href="#waitlist" class="btn-pill cinema sm" style="width:100%;">Request Studio Approval →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4-MODE PROVENANCE ARCHITECTURE -->
+    <div class="apple-section-alt" id="provenance">
+      <section class="apple-section">
+        <header class="section-header">
+          <p class="section-kicker">Strict Editorial Provenance</p>
+          <h2 class="section-title">Never confuse real human speech with AI or rewritten lines.</h2>
+          <p class="section-sub">
+            Born inside 220 Lab’s cinéma-vérité production rooms, Film Script Lab enforces four visually unmistakable dialogue modes on the page and in every exported file.
+          </p>
+        </header>
+
+        <div class="modes-grid">
+          <article class="mode-card orig">
+            <span class="mode-pill-demo">ORIGINAL · Verbatim</span>
+            <h3>Locked Spoken Truth</h3>
+            <p>
+              Pulled directly from the YouTube video with a permanent <code>SRC-</code> SHA-1 hash and timestamp. Strictly read-only so nobody can accidentally alter a subject’s actual words.
+            </p>
+            <div class="mode-rule">Solid Forest Green · Clickable Timecode</div>
+          </article>
+
+          <article class="mode-card adapt">
+            <span class="mode-pill-demo">ADAPTED · Linked</span>
+            <h3> shaped for Cinema, Anchored to Source</h3>
+            <p>
+              Trimmed or tightened for rhythm while keeping the verbatim spoken quote and YouTube timestamp permanently attached underneath—with one-click <strong>Restore Original</strong>.
+            </p>
+            <div class="mode-rule">Dashed Amber · Verbatim Drawer Attached</div>
+          </article>
+
+          <article class="mode-card ai">
+            <span class="mode-pill-demo">AI SUGGESTION</span>
+            <h3>Transparent Dramatic Bridges</h3>
+            <p>
+              Need a structural transition between two real interview moments? Synthetic suggestions are quarantined in dotted purple and can never masquerade as <code>ORIGINAL</code> speech.
+            </p>
+            <div class="mode-rule">Dotted Purple · Zero False Attribution</div>
+          </article>
+
+          <article class="mode-card written">
+            <span class="mode-pill-demo">WRITTEN · Authored</span>
+            <h3>Pure Screenwriter Invention</h3>
+            <p>
+              Dialogue typed directly by you or your co-writer with no video source. Cleanly marked in double-ruled slate during editorial review and formatted seamlessly on PDF print.
+            </p>
+            <div class="mode-rule">Double Slate · Classic Screenplay Cue</div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <!-- CAPABILITIES BENTO GRID -->
+    <section class="apple-section" id="capabilities">
+      <header class="section-header">
+        <p class="section-kicker">Designed by Filmmakers</p>
+        <h2 class="section-title">From YouTube link to shooting script in minutes.</h2>
+        <p class="section-sub">
+          Everything you need to mine hours of interviews, acting workshops, archival broadcasts, or research playlists into a structured feature or documentary script.
+        </p>
+      </header>
+
+      <div class="bento-grid">
+        <article class="bento-card bento-span-7">
+          <span class="bento-eyebrow">Universal Video Ingestion</span>
+          <h3>Works with any public or unlisted YouTube video—plus local Whisper masters.</h3>
+          <p>
+            Paste any <code>youtube.com</code>, <code>youtu.be</code>, Shorts, or unlisted dailies link. Our edge extractor pulls metadata, captions, timestamps, and 12 automatic dramatic themes in seconds. Working with raw camera uploads without captions? Drop in any <code>.srt</code>, <code>.vtt</code>, or run our included Apple Silicon <code>mlx-whisper</code> CLI companion.
+          </p>
+          <pre class="code-snippet">SRC-95495cd1a2  |  youtu.be/7Q_azoXi0Jw?t=124s  |  ORIGINAL  |  speakerVerified: true</pre>
+        </article>
+
+        <article class="bento-card bento-span-5">
+          <span class="bento-eyebrow">Live Ensemble Mapping</span>
+          <h3>Global Speaker → Character Map.</h3>
+          <p>
+            Map documentary interviewees or workshop actors to screenplay character cues (e.g. <code>Lydia Becker → LILITH</code> or <code>Interviewee #3 → DETECTIVE COLE</code>). Rename once and watch every scene, print mirror, and Fountain cue update instantaneously.
+          </p>
+        </article>
+
+        <article class="bento-card bento-span-4">
+          <span class="bento-eyebrow">Synced Screening Monitor</span>
+          <h3>Click any screenplay line to watch the tape.</h3>
+          <p>
+            Every <code>ORIGINAL</code> and <code>ADAPTED</code> line on your Courier Prime page is wired to the right-hand YouTube monitor. Hear vocal cadence, subtext, and physical pauses without leaving the page.
+          </p>
+        </article>
+
+        <article class="bento-card bento-span-4">
+          <span class="bento-eyebrow">Director’s Table</span>
+          <h3>Scene purpose, status &amp; provenance ratios.</h3>
+          <p>
+            Track every scene’s dramatic purpose (<em>Introduction, Conflict, Revelation, Climax</em>), shooting readiness, blocking notes, and exact count of verbatim vs. written dialogue.
+          </p>
+        </article>
+
+        <article class="bento-card bento-span-4">
+          <span class="bento-eyebrow">Production &amp; Legal Exports</span>
+          <h3>Fountain, US Letter PDF &amp; E&amp;O CSV.</h3>
+          <p>
+            Export <code>.fountain</code> for Final Draft or Highland, print standard <code>12pt</code> Courier Prime screenplays, and hand legal counsel a complete CSV provenance ledger linking every quote to its exact YouTube second.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- COMMERCIAL PRICING -->
+    <div class="apple-section-alt" id="pricing">
+      <section class="apple-section">
+        <header class="section-header">
+          <p class="section-kicker">Licensing &amp; Membership</p>
+          <h2 class="section-title">Built for independent directors and studio rooms alike.</h2>
+          <p class="section-sub">
+            Apply for our curated Early Access cohort, or unlock instant lifetime access with a Founding Studio Pass via Stripe.
+          </p>
+        </header>
+
+        <div class="pricing-grid">
+          <!-- Tier 1: Approval Cohort -->
+          <article class="price-card">
+            <span class="price-badge">Waitlist Approval</span>
+            <h3>Early Access</h3>
+            <div class="price-figure">
+              <span class="price-amount">$0</span>
+              <span class="price-period">with approval</span>
+            </div>
+            <p class="price-desc">Curated access for working filmmakers, journalists, and screenwriters testing 220 Lab workflows.</p>
+            <ul class="price-features">
+              <li>Approval-gated Studio access</li>
+              <li>Up to 3 YouTube videos per project</li>
+              <li>4-mode Courier Prime screenplay editor</li>
+              <li><code>.scriptlab.json</code> &amp; Fountain export</li>
+            </ul>
+            <a href="#waitlist" class="btn-pill secondary" data-select-plan="beta">Request Approval</a>
+          </article>
+
+          <!-- Tier 2: Creator -->
+          <article class="price-card">
+            <span class="price-badge">Individual</span>
+            <h3>Creator</h3>
+            <div class="price-figure">
+              <span class="price-amount">$29</span>
+              <span class="price-period">/ month</span>
+            </div>
+            <p class="price-desc">For solo writers, documentary editors, and video essayists turning research playlists into scripts.</p>
+            <ul class="price-features">
+              <li>Instant Studio approval upon checkout</li>
+              <li>Unlimited YouTube video ingestions</li>
+              <li><code>.srt</code>, <code>.vtt</code> &amp; Whisper JSON import</li>
+              <li>Fountain + US Letter Courier Prime PDF</li>
+              <li>E&amp;O Source Provenance CSV export</li>
+            </ul>
+            <button type="button" class="btn-pill dark-ink" data-checkout-tier="creator">Start Creator Plan</button>
+          </article>
+
+          <!-- Tier 3: Founding Lifetime Pass (Featured) -->
+          <article class="price-card featured">
+            <span class="price-badge">Most Popular · First 100</span>
+            <h3>Founding Pass</h3>
+            <div class="price-figure">
+              <span class="price-amount">$249</span>
+              <span class="price-period">one-time</span>
+            </div>
+            <p class="price-desc">Own 220 Lab · Film Script Lab forever. Skip the waitlist immediately with lifetime Pro &amp; Studio updates.</p>
+            <ul class="price-features">
+              <li><strong>Instant Studio unlock — skip waitlist</strong></li>
+              <li>Lifetime license · zero recurring fees</li>
+              <li>Unlimited projects &amp; YouTube sources</li>
+              <li>Full E&amp;O Legal Clearance CSV ledgers</li>
+              <li>Apple Silicon <code>mlx-whisper</code> local bridge</li>
+              <li>Direct 220 Lab Berkeley founder support</li>
+            </ul>
+            <button type="button" class="btn-pill primary" data-checkout-tier="lifetime">Buy Founding Pass — $249</button>
+          </article>
+
+          <!-- Tier 4: Studio -->
+          <article class="price-card">
+            <span class="price-badge">Production Room</span>
+            <h3>Studio</h3>
+            <div class="price-figure">
+              <span class="price-amount">$79</span>
+              <span class="price-period">/ month</span>
+            </div>
+            <p class="price-desc">For documentary production companies, writers’ rooms, and multi-camera ensemble workshops.</p>
+            <ul class="price-features">
+              <li>Up to 5 approved seats &amp; invite codes</li>
+              <li>Portable multi-editor <code>.scriptlab.json</code> bundles</li>
+              <li>Multi-language caption track switching</li>
+              <li>Distributor-ready E&amp;O provenance reports</li>
+              <li>Priority feature onboarding with 220 Lab</li>
+            </ul>
+            <button type="button" class="btn-pill dark-ink" data-checkout-tier="studio">Start Studio Plan</button>
+          </article>
+        </div>
+
+        <div id="checkout-feedback" class="status-banner" hidden style="max-width:740px;margin:22px auto 0;text-align:center;"></div>
+      </section>
+    </div>
+
+    <!-- WAITLIST APPLICATION & APPROVAL CHECKER -->
+    <section class="apple-section" id="waitlist">
+      <header class="section-header">
+        <p class="section-kicker">Studio Access &amp; Approval</p>
+        <h2 class="section-title">Request approval to use Film Script Lab.</h2>
+        <p class="section-sub">
+          We review filmmaker applications daily to keep quality high. Apply below, or check your approval status / enter an invite code to launch the Studio immediately.
+        </p>
+      </header>
+
+      <div class="waitlist-split">
+        <!-- Left: Apply to Waitlist -->
+        <div class="apple-panel">
+          <h3>Join the Approval Waitlist</h3>
+          <p>Tell us what you are directing, editing, or writing. Approved emails unlock <code>scriptlab.cloud/app.html</code>.</p>
+
+          <form id="waitlist-form">
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="wl-name">Full Name</label>
+                <input type="text" id="wl-name" class="apple-input" placeholder="Jane Campion" required />
+              </div>
+              <div class="form-field">
+                <label for="wl-email">Work or Studio Email</label>
+                <input type="email" id="wl-email" class="apple-input" placeholder="jane@production.studio" required />
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="wl-role">Primary Discipline</label>
+                <select id="wl-role" class="apple-select">
+                  <option value="Director / Showrunner">Director / Showrunner</option>
+                  <option value="Screenwriter">Screenwriter</option>
+                  <option value="Documentary Editor">Documentary Editor</option>
+                  <option value="Producer / Studio">Producer / Studio</option>
+                  <option value="Investigative Journalist">Investigative Journalist</option>
+                  <option value="Video Essayist / Creator">Video Essayist / Creator</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="wl-plan">Desired Tier</label>
+                <select id="wl-plan" class="apple-select">
+                  <option value="beta">Early Access Cohort (Approval Beta)</option>
+                  <option value="lifetime">Founding Lifetime Pass ($249)</option>
+                  <option value="creator">Creator ($29/mo)</option>
+                  <option value="studio">Studio ($79/mo)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="wl-yt">Sample YouTube Source or Film Link <span style="font-weight:400;color:var(--text-2);">(optional)</span></label>
+              <input type="url" id="wl-yt" class="apple-input" placeholder="https://www.youtube.com/watch?v=..." />
+            </div>
+
+            <div class="form-field">
+              <label for="wl-notes">What project will you cut or write in Script Lab?</label>
+              <textarea id="wl-notes" class="apple-textarea" placeholder="Feature documentary from 40 hours of unlisted interviews, biopic adaptation, Direct Action workshop…"></textarea>
+            </div>
+
+            <button type="submit" class="btn-pill primary lg" id="wl-submit-btn" style="width:100%;">
+              Submit Application for Approval
+            </button>
+
+            <div id="wl-result" class="status-banner" hidden></div>
+          </form>
+        </div>
+
+        <!-- Right: Check Approval Status / Enter Invite Code -->
+        <div class="apple-panel">
+          <h3>Already Applied or Invited?</h3>
+          <p>Check whether 220 Lab has approved your email, or enter your <code>SL-XXXX-XXXX</code> invite code to unlock the Studio.</p>
+
+          <form id="status-check-form">
+            <div class="form-field">
+              <label for="chk-email">Approved Email Address</label>
+              <input type="email" id="chk-email" class="apple-input" placeholder="you@domain.com" />
+            </div>
+
+            <div class="form-field">
+              <label for="chk-code">Or Invite / Approval Code <span style="font-weight:400;color:var(--text-2);">(optional)</span></label>
+              <input type="text" id="chk-code" class="apple-input" placeholder="SL-XXXX-XXXX" style="font-family:var(--mono);text-transform:uppercase;" />
+            </div>
+
+            <button type="submit" class="btn-pill dark-ink lg" id="chk-submit-btn" style="width:100%;">
+              Verify Access &amp; Launch Studio
+            </button>
+
+            <div id="chk-result" class="status-banner" hidden></div>
+          </form>
+
+          <div style="margin-top:26px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px;color:var(--text-2);line-height:1.5;">
+            <strong style="color:var(--text);display:block;margin-bottom:4px;">How 220 Lab Approval Works</strong>
+            1. Submit your email on the left (takes 20 seconds).<br />
+            2. Once approved by 220 Lab, entering your email above mints a 30-day cryptographic Studio pass.<br />
+            3. Need immediate access for an active shoot? Choose the <strong>Founding Pass</strong> above.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <div class="apple-section-alt" id="faq">
+      <section class="apple-section">
+        <header class="section-header">
+          <p class="section-kicker">Questions &amp; Answers</p>
+          <h2 class="section-title">Everything filmmakers ask before switching.</h2>
+        </header>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>Does Film Script Lab really work with any YouTube video?</summary>
+            <p>
+              Yes. Paste any public or unlisted YouTube URL (interviews, rehearsals, archival broadcasts, Shorts, or livestreams). Our edge ingestion API extracts captions, timestamps, and speaker turns automatically. For raw camera uploads that don’t have captions on YouTube yet, you can drop in any <code>.srt</code>, <code>.vtt</code>, or Whisper JSON file—or run our included Apple Silicon <code>mlx-whisper</code> script—and every line still links frame-accurately to your YouTube player.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Why is software access gated by an approval waitlist?</summary>
+            <p>
+              220 Lab builds precision filmmaking instruments with working directors and editors. Reviewing waitlist cohorts lets us onboard productions cleanly, protect edge caption ingestion capacity, and support every filmmaker personally—while offering Founding Pass checkout for productions that need immediate day-one access.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How does the Source Provenance CSV help with documentary E&amp;O insurance?</summary>
+            <p>
+              Errors &amp; Omissions (E&amp;O) clearance requires proving where verbatim quotes came from and distinguishing exact speech from dramatized adaptation. Every <code>ORIGINAL</code> and <code>ADAPTED</code> line in Film Script Lab carries a SHA-1 <code>SRC-</code> ID, original spoken text, final screenplay text, and a clickable <code>https://youtu.be/...?t=124s</code> timestamp link in one clean CSV ledger.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I move my screenplay into Final Draft, Highland, or Fade In?</summary>
+            <p>
+              Instantly. Press <code>⌘E</code> to export standard <code>.fountain</code> syntax (compatible with Final Draft, Highland 2, Fade In, WriterDuet, and Arc Studio) with provenance notes preserved in non-printing <code>[[brackets]]</code>, or print industry-standard <code>12pt</code> Courier Prime US Letter PDFs directly from your browser.
+            </p>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="apple-footer">
+    <div class="apple-footer-inner">
+      <div>
+        <strong style="color:var(--text);">220 Lab · Film Script Lab</strong> · <code>scriptlab.cloud</code><br />
+        <span>Created by Zhan Petrov · 220 Lab Berkeley · Verbatim Cinema Instruments</span>
+      </div>
+      <div class="footer-links">
+        <a href="#live-preview">Workbench</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#waitlist">Waitlist</a>
+        <a href="app.html">Open Studio</a>
+        <a href="admin.html">220 Lab Admin</a>
+        <a href="mailto:zhanpetrov8@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.youtube.com/iframe_api" async></script>
+  <script src="config.js?v=20261116"></script>
+  <script src="scripts/analytics.js?v=20261116"></script>
+  <script src="data/demo_sources.js?v=20261116"></script>
+  <script src="scripts/landing.js?v=20261116"></script>
+</body>
+</html>

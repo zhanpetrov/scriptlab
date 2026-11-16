@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waitlist Admin — 220 Lab · Film Script Lab</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="styles/apple-product.css?v=20261116" />
+</head>
+<body>
+  <header class="apple-bar">
+    <div class="apple-bar-inner">
+      <a class="wordmark" href="index.html">
+        <span class="tally-dot"></span>
+        <span class="wordmark-brand">220 Lab</span>
+        <span class="wordmark-divider"></span>
+        <span class="wordmark-product">Waitlist &amp; Approval Console</span>
+      </a>
+      <div class="bar-actions">
+        <a class="btn-pill secondary sm" href="index.html">Product Page</a>
+        <a class="btn-pill primary sm" href="app.html">Open Studio →</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="apple-section" style="padding-top:42px;">
+    <!-- Admin Key Gate -->
+    <div id="admin-login-card" class="apple-panel" style="max-width:500px;margin:24px auto;">
+      <h3>220 Lab Admin Sign In</h3>
+      <p>Enter your <code>SCRIPTLAB_ADMIN_KEY</code> (stored locally in <code>~/.env</code> on your studio Mac) to review and approve waitlist filmmakers.</p>
+      <form id="admin-login-form">
+        <div class="form-field">
+          <label for="admin-key-input">Admin Bearer Key</label>
+          <input type="password" id="admin-key-input" class="apple-input" placeholder="sl_admin_..." required />
+        </div>
+        <button type="submit" class="btn-pill primary lg" style="width:100%;">Unlock Approval Console</button>
+        <div id="admin-login-err" class="status-banner error" hidden></div>
+      </form>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="admin-dashboard" hidden>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px;">
+        <div>
+          <p class="section-kicker" style="margin-bottom:2px;">Live Cloudflare KV Ledger</p>
+          <h1 style="font-family:var(--font-display);font-size:34px;letter-spacing:-0.03em;">Filmmaker Waitlist &amp; Approvals</h1>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button type="button" class="btn-pill secondary sm" id="admin-refresh-btn">↻ Refresh</button>
+          <button type="button" class="btn-pill secondary sm" id="admin-logout-btn">Lock Console</button>
+        </div>
+      </div>
+
+      <div class="admin-stats-grid">
+        <div class="stat-tile"><span>Total Applicants</span><strong id="st-total">0</strong></div>
+        <div class="stat-tile"><span>Pending Approval</span><strong id="st-pending" style="color:var(--amber);">0</strong></div>
+        <div class="stat-tile"><span>Approved Studio</span><strong id="st-approved" style="color:var(--green);">0</strong></div>
+        <div class="stat-tile"><span>Cohort Invite Codes</span><strong id="st-invites">0</strong></div>
+      </div>
+
+      <!-- Quick Direct Approve + Cohort Invite Generator -->
+      <div class="waitlist-split" style="margin-bottom:28px;">
+        <div class="apple-panel" style="padding:24px;">
+          <h3 style="font-size:20px;">Direct Email Approval</h3>
+          <p style="margin-bottom:14px;">Pre-approve any filmmaker’s email immediately and generate a 1-click magic sign-in URL.</p>
+          <form id="direct-approve-form" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <input type="email" id="dir-email" class="apple-input" placeholder="filmmaker@studio.com" required style="flex:1 1 200px;" />
+            <select id="dir-tier" class="apple-select" style="width:140px;">
+              <option value="beta">Beta Cohort</option>
+              <option value="pro">Creator Pro</option>
+              <option value="studio">Studio</option>
+              <option value="founder">Founder</option>
+            </select>
+            <button type="submit" class="btn-pill primary sm">Approve Now</button>
+          </form>
+          <div id="dir-approve-out" class="status-banner approved" hidden></div>
+        </div>
+
+        <div class="apple-panel" style="padding:24px;">
+          <h3 style="font-size:20px;">Mint Reusable Invite Code</h3>
+          <p style="margin-bottom:14px;">Create a multi-use cohort invite code (e.g. <code>SL-BERKELEY-25</code>).</p>
+          <form id="mint-invite-form" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <input type="text" id="inv-code" class="apple-input" placeholder="SL-SUNDANCE" style="flex:1 1 150px;font-family:var(--mono);text-transform:uppercase;" />
+            <input type="number" id="inv-uses" class="apple-input" value="25" min="1" max="1000" style="width:90px;" title="Max uses" />
+            <button type="submit" class="btn-pill dark-ink sm">Mint Code</button>
+          </form>
+          <div id="mint-invite-out" class="status-banner approved" hidden></div>
+        </div>
+      </div>
+
+      <!-- Applicants Table -->
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Applicant</th>
+              <th>Discipline &amp; Plan</th>
+              <th>Sample YouTube / Notes</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="config.js?v=20261116"></script>
+  <script src="scripts/admin.js?v=20261116"></script>
+</body>
+</html>
