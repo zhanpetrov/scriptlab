@@ -1309,3 +1309,399 @@ button {
 @media (max-width: 820px) {
   .bar-nav { display: none; }
 }
+
+/* ---------- Built From a Real Film (HOW I SEE · Monochrome #070707) ---------- */
+.film-origin-band {
+  background: #070707;
+  color: #f3f3f3;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  scroll-margin-top: 64px;
+}
+
+#founder {
+  scroll-margin-top: 64px;
+}
+
+.film-origin-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 68px 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 38px;
+  align-items: center;
+}
+
+@media (max-width: 920px) {
+  .film-origin-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+.film-origin-kicker {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a3a3a3;
+  margin-bottom: 10px;
+}
+
+.film-origin-title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.06;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.film-origin-copy {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: #c8c8c8;
+  margin-bottom: 14px;
+}
+
+.film-origin-bridge {
+  font-size: 16px;
+  line-height: 1.52;
+  color: #ffffff;
+  font-weight: 500;
+  border-left: 2px solid #ffffff;
+  padding-left: 14px;
+  margin: 18px 0 24px;
+}
+
+.film-origin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-pill.mono-light {
+  background: #ffffff;
+  color: #070707;
+  border: 1px solid #ffffff;
+}
+.btn-pill.mono-light:hover {
+  background: #e5e5e5;
+}
+
+.btn-pill.mono-outline {
+  background: transparent;
+  color: #f3f3f3;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+}
+.btn-pill.mono-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.film-trailer-frame {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #000000;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+}
+
+.film-trailer-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a3a3a3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0c0c0c;
+}
+
+.film-trailer-stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+}
+
+.film-trailer-stage video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.film-trailer-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.62));
+  padding: 16px;
+  transition: opacity 0.2s ease;
+}
+
+.film-trailer-overlay.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.film-silent-link {
+  font-size: 12px;
+  color: #d4d4d4;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.film-silent-link:hover {
+  color: #ffffff;
+}
+
+/* ---------- Excerpt Divider Inside Demo Archive ---------- */
+.sc-excerpt-divider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 6px 8px;
+  margin-top: 4px;
+  border-radius: 6px;
+  background: #14171e;
+  border: 1px solid #2b3140;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #d6dae4;
+}
+.sc-excerpt-divider a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+/* ---------- Founder Section ---------- */
+.founder-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .founder-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.founder-bio p {
+  font-size: 16px;
+  line-height: 1.62;
+  color: var(--text-2);
+  margin-bottom: 14px;
+}
+
+.founder-bio p strong {
+  color: var(--text);
+}
+
+.founder-credit {
+  margin-top: 18px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.filmography-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.filmography-heading {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+  margin-bottom: 14px;
+}
+
+.filmography-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filmography-item {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.filmography-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.filmography-title {
+  font-weight: 700;
+  font-size: 15.5px;
+  color: var(--text);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filmography-meta {
+  font-size: 13.5px;
+  color: var(--text-2);
+  margin-top: 3px;
+}
+
+.zhan-placeholder {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--amber);
+  background: var(--amber-soft);
+  border: 1px dashed var(--amber);
+  border-radius: 6px;
+  padding: 2px 7px;
+}
+
+/* ---------- Mobile 375px Overflow Prevention ---------- */
+.waitlist-split > *,
+.bento-grid > *,
+.modes-grid > *,
+.pricing-grid > *,
+.showcase-grid > *,
+.film-origin-inner > *,
+.founder-grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.apple-panel,
+.bento-card,
+.price-card,
+.mode-card,
+.macos-window {
+  max-width: 100%;
+}
+
+.code-snippet {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 600px) {
+  #nav-status-btn {
+    display: none;
+  }
+
+  .apple-bar-inner {
+    padding: 10px 14px;
+    gap: 8px;
+  }
+
+  .wordmark {
+    gap: 7px;
+    min-width: 0;
+  }
+
+  .wordmark-brand {
+    font-size: 15.5px;
+  }
+
+  .wordmark-divider {
+    height: 13px;
+  }
+
+  .wordmark-product {
+    font-size: 13.5px;
+  }
+
+  .bar-actions {
+    gap: 6px;
+  }
+
+  .bar-actions .btn-pill.sm {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .theme-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+  .hero-section {
+    padding: 46px 16px 34px;
+  }
+
+  .hero-cta-row {
+    gap: 10px;
+  }
+
+  .btn-pill.lg {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .film-origin-inner {
+    padding: 48px 16px;
+  }
+
+  .showcase-wrap {
+    padding: 0 12px 52px;
+  }
+
+  .macos-titlebar {
+    padding: 10px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .showcase-source-tabs {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .showcase-url-bar {
+    padding: 10px 12px;
+    flex-wrap: wrap;
+  }
+
+  .showcase-url-input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .apple-section {
+    padding: 52px 16px;
+  }
+
+  .apple-panel {
+    padding: 22px 16px;
+    border-radius: 20px;
+  }
+
+  .apple-footer {
+    padding: 32px 16px 44px;
+  }
+}
+

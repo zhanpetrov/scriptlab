@@ -15,7 +15,6 @@
 const enc = new TextEncoder();
 
 const PUBLIC_DEMO_VIDEOS = new Set([
-  "7Q_azoXi0Jw", // Zhan Petrov — WHO GIVES A DAMN?
   "UF8uR6Z6KLc", // Steve Jobs — 2005 Stanford Commencement Address
   "WnCSXFsJFh8", // PRECIPICE Workshop #3
   "RxiiSR6sZyQ", // PRECIPICE Workshop #2
@@ -290,7 +289,8 @@ function parseTimedTextXml(xmlText, defaultSpeaker) {
     } else {
       const gap = seg.start - current.end;
       const curWords = countWords(current.text);
-      const endsSentence = /[.?!]["'”)]?$/.test(current.text);
+      const abbrevEnd = /(?:\b(?:U\.S|U\.K|U\.N|Mr|Mrs|Ms|Dr|Prof|Sr|Jr|St|vs|etc|e\.g|i\.e|Inc|Ltd|Corp|Gov|Sen|Rep|Gen|Col|Lt|Sgt|Capt|Rev|Hon|Ph\.D|a\.m|p\.m|No|Fig|Jan|Feb|Mar|Apr|Aug|Sept|Oct|Nov|Dec)|(?:^|\s)[A-Z])\.["'”)]?$/i.test(current.text);
+      const endsSentence = /[.?!]["'”)]?$/.test(current.text) && !abbrevEnd;
       const speakerChanged = explicitSpeaker && explicitSpeaker !== current.speaker;
 
       if (
@@ -1123,14 +1123,14 @@ export default {
           priceId: env.STRIPE_PRICE_STUDIO || "",
           amount: String(env.PRICE_STUDIO_CENTS || "7900"),
           name: "220 Lab · Film Script Lab — Studio Plan",
-          desc: "Multi-video documentary & rehearsal rooms, E&O legal provenance CSV ledgers, priority support.",
+          desc: "Multi-video documentary & rehearsal rooms, source-linked E&O provenance CSV ledgers, priority support.",
           interval: "month",
         },
         lifetime: {
           mode: "payment",
           priceId: env.STRIPE_PRICE_LIFETIME || "",
           amount: String(env.PRICE_LIFETIME_CENTS || "24900"),
-          name: "220 Lab · Film Script Lab — Founding Studio Lifetime Pass",
+          name: "220 Lab · Film Script Lab — Founding Pass",
           desc: "One-time Founding Pass. Instant Studio approval, unlimited YouTube sources, Fountain, Courier Prime PDF & E&O CSV.",
           interval: null,
         },

@@ -1,5 +1,5 @@
 window.SCRIPTLAB_STARTER_DATA = {
-  "generatedAt": "2026-11-16T22:19:31.110Z",
+  "generatedAt": "2026-11-18T14:35:00.000Z",
   "themes": [
     "power",
     "family",
@@ -15,7 +15,12 @@ window.SCRIPTLAB_STARTER_DATA = {
     "truth"
   ],
   "defaultCharacterMap": {
-    "Zhan Petrov": "NARRATOR",
+    "Man Under Shelter (60)": "MAN UNDER SHELTER",
+    "Milo Parraz": "TRAVELER",
+    "Nicholas (“Poodle”)": "POODLE",
+    "Rebecca Mallory": "REBECCA",
+    "Zhan Petrov": "FILMMAKER (O.S.)",
+    "Female Co-Interviewer": "CO-INTERVIEWER (O.S.)",
     "Steve Jobs": "JOBS",
     "Lydia Becker": "LILITH",
     "Antonia Kao": "ANTONIA",
@@ -27,16 +32,45 @@ window.SCRIPTLAB_STARTER_DATA = {
   },
   "sources": [
     {
-      "id": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "title": "WHO GIVES A DAMN? — Satirical Editorial Short",
-      "shortLabel": "WHO GIVES A DAMN?",
-      "author": "Zhan Petrov",
-      "durationSeconds": 300,
-      "thumbnailUrl": "https://i.ytimg.com/vi/7Q_azoXi0Jw/hqdefault.jpg",
+      "id": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "title": "HOW I SEE — Street Interviews (Short Excerpts)",
+      "shortLabel": "HOW I SEE · Street Interviews",
+      "author": "Zhan Petrov · 220 Lab",
+      "durationSeconds": 2503,
+      "isExcerptOnly": true,
+      "fullProductUrl": "https://howisee.homes/?utm_source=scriptlab&utm_medium=site&utm_campaign=howisee#interviews",
+      "fullProductLabel": "Full uncut interviews (41:43) → howisee.homes",
+      "thumbnailUrl": "assets/how-i-see-trailer-poster.jpg",
       "languageCode": "en",
       "isAutoCaptions": false,
-      "lineCount": 29
+      "lineCount": 25,
+      "excerpts": [
+        {
+          "id": "ex1",
+          "label": "Excerpt 1 · Muni Platform (00:00–01:05)",
+          "startSeconds": 0,
+          "endSeconds": 65
+        },
+        {
+          "id": "ex2",
+          "label": "Excerpt 2 · On Foot from Visalia (14:44–16:00)",
+          "startSeconds": 884,
+          "endSeconds": 960
+        },
+        {
+          "id": "ex3",
+          "label": "Excerpt 3 · Taylor Street, Tenderloin (18:50–20:18)",
+          "startSeconds": 1130,
+          "endSeconds": 1218
+        },
+        {
+          "id": "ex4",
+          "label": "Excerpt 4 · Sidewalk Shelter (22:45–23:45)",
+          "startSeconds": 1365,
+          "endSeconds": 1425
+        }
+      ]
     },
     {
       "id": "yt_UF8uR6Z6KLc",
@@ -65,359 +99,454 @@ window.SCRIPTLAB_STARTER_DATA = {
   ],
   "lines": [
     {
-      "id": "SRC-8f74a2eadc",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 3,
-      "speaker": "Zhan Petrov",
+      "id": "SRC-871b72cc48",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 0,
+      "speaker": "Nicholas (“Poodle”)",
       "speakerVerified": true,
-      "text": "Who gives a damn? Who sleeps with whom?",
-      "wordCount": 8,
-      "themes": []
-    },
-    {
-      "id": "SRC-b7736b3d34",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 19,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "Air Force One was headed for Beijing in May when Marco Rubio told Donald Trump that U.S.",
-      "wordCount": 17,
-      "themes": []
-    },
-    {
-      "id": "SRC-3f25038472",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 26,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "intelligence had linked NVIDIA’s CEO to a suspected Chinese spy.",
-      "wordCount": 10,
-      "themes": [
-        "politics"
-      ]
-    },
-    {
-      "id": "SRC-c3e604e483",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 31,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "That’s what The New York Times and The Washington Post reported.",
-      "wordCount": 11,
-      "themes": [
-        "politics"
-      ]
-    },
-    {
-      "id": "SRC-812d577c29",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 41,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "The plane stopped for fuel in Anchorage. Jensen Huang got on.",
-      "wordCount": 11,
-      "themes": []
-    },
-    {
-      "id": "SRC-972e241caa",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 55,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "Six months later, a reporter asked Trump if he knew about it at the time.",
-      "wordCount": 15,
-      "themes": [
-        "mortality",
-        "truth"
-      ]
-    },
-    {
-      "id": "SRC-74edcbecef",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 60,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "“No, I didn’t hear about it then,” he said.",
-      "wordCount": 9,
-      "themes": []
-    },
-    {
-      "id": "SRC-804c529080",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 66,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "According to the Times, Rubio’s warning was at least the second time Trump had been briefed.",
-      "wordCount": 16,
-      "themes": [
-        "mortality"
-      ]
-    },
-    {
-      "id": "SRC-d8ff8d5aec",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 73,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "Apparently the president’s memory had a longer layover than the plane.",
-      "wordCount": 11,
-      "themes": [
-        "power",
-        "politics",
-        "truth"
-      ]
-    },
-    {
-      "id": "SRC-f490156acc",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 87,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "The Times also reported a separate relationship between Huang and an NVIDIA executive who reported directly to him.",
-      "wordCount": 18,
-      "themes": []
-    },
-    {
-      "id": "SRC-792f00a6fc",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 103,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "Alice Huang had been an executive at Singapore-based chip buyer Megaspeed.",
-      "wordCount": 11,
-      "themes": []
-    },
-    {
-      "id": "SRC-9effa46c61",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 110,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "The Times and the Post reported that U.S.",
-      "wordCount": 8,
-      "themes": []
-    },
-    {
-      "id": "SRC-c26b253c0b",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 112,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "intelligence concluded she worked for Beijing— an allegation China’s foreign ministry rejected.",
-      "wordCount": 12,
-      "themes": [
-        "politics"
-      ]
-    },
-    {
-      "id": "SRC-65b87075c1",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 124,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "The Information, citing people who know her, an NVIDIA China sales employee, and corporate records, reported that her relationship with Jensen Huang helped get at least $7.5 billion worth of NVIDIA chips through intermediaries to Chinese firms.",
-      "wordCount": 37,
-      "themes": [
-        "politics",
-        "money",
-        "truth"
-      ]
-    },
-    {
-      "id": "SRC-90eef80944",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 143,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "NVIDIA’s board said on November 8, when it opened its inquiry, that it had no reason to believe national security or NVIDIA secrets were compromised.",
-      "wordCount": 25,
-      "themes": [
-        "faith"
-      ]
-    },
-    {
-      "id": "SRC-7f439485e4",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 155,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "Fine. Who signed off on the shipments?",
-      "wordCount": 7,
-      "themes": []
-    },
-    {
-      "id": "SRC-e2dd4717b3",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 160,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "Where did the chips go? What did NVIDIA tell investors about the customer?",
-      "wordCount": 13,
-      "themes": []
-    },
-    {
-      "id": "SRC-5a79755710",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 167,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "On Wednesday, November 11, The Wall Street Journal and Reuters reported that NVIDIA’s board was preparing to oust Huang.",
-      "wordCount": 19,
-      "themes": []
-    },
-    {
-      "id": "SRC-c1f3dc32c2",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 177,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "As of early November 12, the company had yet to announce a final decision.",
-      "wordCount": 14,
-      "themes": [
-        "mortality",
-        "money"
-      ]
-    },
-    {
-      "id": "SRC-fa66a4906d",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 188,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "The stock fell more than 8 percent in Wednesday’s after-hours trading.",
-      "wordCount": 11,
-      "themes": []
-    },
-    {
-      "id": "SRC-a166fd653f",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 198,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "Now consider a hypothetical scenario: a 30 percent crash across the wider market would take a much bigger chain reaction— say, a hypothetical pullback where a cloud company pushes its next chip order into next year,",
+      "text": "Hi, my name is Nicholas Michael Nelson. You can call me Poodle. And I can’t believe I don’t even have lipstick on for this. Go ahead with the interview questions. What do you want to know?",
       "wordCount": 36,
       "themes": [
-        "money"
-      ]
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex1",
+      "excerptLabel": "Excerpt 1 · Muni Platform (00:00–01:05)",
+      "excerptStart": 0,
+      "excerptEnd": 65
     },
     {
-      "id": "SRC-2868ec7a10",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 215,
+      "id": "SRC-20ea57c92f",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 14,
       "speaker": "Zhan Petrov",
       "speakerVerified": true,
-      "text": "and a lender demands actual revenue before funding another data center.",
-      "wordCount": 11,
-      "themes": [
-        "money"
-      ]
-    },
-    {
-      "id": "SRC-bfe5714499",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 223,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "That’s how a boardroom scandal could start to look like the dot-com bust.",
-      "wordCount": 13,
-      "themes": [
-        "conflict"
-      ]
-    },
-    {
-      "id": "SRC-2722b59120",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 230,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "Meanwhile, Wall Street spent Wednesday evening, November 11, dumping NVIDIA.",
-      "wordCount": 10,
-      "themes": []
-    },
-    {
-      "id": "SRC-48964eff78",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 237,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "On Thursday, November 19, if the IPO goes ahead as scheduled, it gets to buy Anthropic.",
-      "wordCount": 16,
-      "themes": []
-    },
-    {
-      "id": "SRC-a055d4937e",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 247,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "Read the November 10 prospectus before you call that a change of heart.",
-      "wordCount": 13,
-      "themes": [
-        "love"
-      ]
-    },
-    {
-      "id": "SRC-7413eee3dc",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 252,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "At the assumed midpoint price, NVIDIA itself has agreed to buy about $10 billion of non-voting Anthropic stock in a concurrent private placement contingent on the IPO.",
-      "wordCount": 27,
-      "themes": [
-        "money"
-      ]
-    },
-    {
-      "id": "SRC-f19cb131f1",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 274,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "The board can show Jensen Huang the door.",
-      "wordCount": 8,
-      "themes": []
-    },
-    {
-      "id": "SRC-12a0fae429",
-      "workshopId": "yt_7Q_azoXi0Jw",
-      "youtubeId": "7Q_azoXi0Jw",
-      "seconds": 279,
-      "speaker": "Zhan Petrov",
-      "speakerVerified": true,
-      "text": "Somebody still has to sign the check.",
+      "text": "How did you get on the street?",
       "wordCount": 7,
       "themes": [
-        "money"
-      ]
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex1",
+      "excerptLabel": "Excerpt 1 · Muni Platform (00:00–01:05)",
+      "excerptStart": 0,
+      "excerptEnd": 65
+    },
+    {
+      "id": "SRC-7f32479473",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 16,
+      "speaker": "Nicholas (“Poodle”)",
+      "speakerVerified": true,
+      "text": "How did I get on the street? Well, typically, I wake up, leave my house, and I go down the stairs, and then I’m on the street. No—I was disinherited and disowned at 15 and kicked out of my rich, white, privileged mansion into the streets of freedom. And I get to be who I want, when I want, how I want. No one tells me jack shit.",
+      "wordCount": 68,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex1",
+      "excerptLabel": "Excerpt 1 · Muni Platform (00:00–01:05)",
+      "excerptStart": 0,
+      "excerptEnd": 65
+    },
+    {
+      "id": "SRC-052c65901c",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 45,
+      "speaker": "Zhan Petrov",
+      "speakerVerified": true,
+      "text": "What is freedom for you?",
+      "wordCount": 5,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex1",
+      "excerptLabel": "Excerpt 1 · Muni Platform (00:00–01:05)",
+      "excerptStart": 0,
+      "excerptEnd": 65
+    },
+    {
+      "id": "SRC-038e2161bc",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 47,
+      "speaker": "Nicholas (“Poodle”)",
+      "speakerVerified": true,
+      "text": "Freedom?",
+      "wordCount": 1,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex1",
+      "excerptLabel": "Excerpt 1 · Muni Platform (00:00–01:05)",
+      "excerptStart": 0,
+      "excerptEnd": 65
+    },
+    {
+      "id": "SRC-3216d694bb",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 886,
+      "speaker": "Zhan Petrov",
+      "speakerVerified": true,
+      "text": "Okay—how old are you? How did you get on the street?",
+      "wordCount": 11,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex2",
+      "excerptLabel": "Excerpt 2 · On Foot from Visalia (14:44–16:00)",
+      "excerptStart": 884,
+      "excerptEnd": 960
+    },
+    {
+      "id": "SRC-4d30caeeb8",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 888,
+      "speaker": "Milo Parraz",
+      "speakerVerified": true,
+      "text": "42. I walked from Visalia, California. It took me 30 days. I left on the 11th of last month, and I just barely made it here tonight. It took me 30 days to walk here: I got one ride, two rides, three rides, and then I collected cans and bottles and camped on the creeksides and at the rivers, and bought a bus ticket and then a train ticket, and I’m here. I have a home—I just left.",
+      "wordCount": 78,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex2",
+      "excerptLabel": "Excerpt 2 · On Foot from Visalia (14:44–16:00)",
+      "excerptStart": 884,
+      "excerptEnd": 960
+    },
+    {
+      "id": "SRC-fa09e4885e",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 938,
+      "speaker": "Zhan Petrov",
+      "speakerVerified": true,
+      "text": "You’re just a traveler?",
+      "wordCount": 4,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex2",
+      "excerptLabel": "Excerpt 2 · On Foot from Visalia (14:44–16:00)",
+      "excerptStart": 884,
+      "excerptEnd": 960
+    },
+    {
+      "id": "SRC-106bd1ec62",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 939,
+      "speaker": "Milo Parraz",
+      "speakerVerified": true,
+      "text": "I’m just traveling on foot.",
+      "wordCount": 5,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex2",
+      "excerptLabel": "Excerpt 2 · On Foot from Visalia (14:44–16:00)",
+      "excerptStart": 884,
+      "excerptEnd": 960
+    },
+    {
+      "id": "SRC-e3d0e5370b",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 942,
+      "speaker": "Zhan Petrov",
+      "speakerVerified": true,
+      "text": "Like a nomad?",
+      "wordCount": 3,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex2",
+      "excerptLabel": "Excerpt 2 · On Foot from Visalia (14:44–16:00)",
+      "excerptStart": 884,
+      "excerptEnd": 960
+    },
+    {
+      "id": "SRC-9d83aa0a13",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 943,
+      "speaker": "Milo Parraz",
+      "speakerVerified": true,
+      "text": "Yes, like the old days, I guess.",
+      "wordCount": 7,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex2",
+      "excerptLabel": "Excerpt 2 · On Foot from Visalia (14:44–16:00)",
+      "excerptStart": 884,
+      "excerptEnd": 960
+    },
+    {
+      "id": "SRC-57bd652357",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 948,
+      "speaker": "Zhan Petrov",
+      "speakerVerified": true,
+      "text": "Okay. And can you say what is your name and how we can find you?",
+      "wordCount": 15,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex2",
+      "excerptLabel": "Excerpt 2 · On Foot from Visalia (14:44–16:00)",
+      "excerptStart": 884,
+      "excerptEnd": 960
+    },
+    {
+      "id": "SRC-abc7fcba79",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1131,
+      "speaker": "Female Co-Interviewer",
+      "speakerVerified": true,
+      "text": "So say, please, what’s your name?",
+      "wordCount": 6,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex3",
+      "excerptLabel": "Excerpt 3 · Taylor Street, Tenderloin (18:50–20:18)",
+      "excerptStart": 1130,
+      "excerptEnd": 1218
+    },
+    {
+      "id": "SRC-ccf372991b",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1133,
+      "speaker": "Rebecca Mallory",
+      "speakerVerified": true,
+      "text": "Rebecca Mallory [middle names] Rock.",
+      "wordCount": 5,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex3",
+      "excerptLabel": "Excerpt 3 · Taylor Street, Tenderloin (18:50–20:18)",
+      "excerptStart": 1130,
+      "excerptEnd": 1218
+    },
+    {
+      "id": "SRC-0a5162ef20",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1138,
+      "speaker": "Female Co-Interviewer",
+      "speakerVerified": true,
+      "text": "And how long have you been here? And before, where did you live?",
+      "wordCount": 13,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex3",
+      "excerptLabel": "Excerpt 3 · Taylor Street, Tenderloin (18:50–20:18)",
+      "excerptStart": 1130,
+      "excerptEnd": 1218
+    },
+    {
+      "id": "SRC-08d70fae3e",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1142,
+      "speaker": "Rebecca Mallory",
+      "speakerVerified": true,
+      "text": "I lived up the street a few years ago—maybe 10, 15 years, maybe a little less. [Before that] Los Angeles.",
+      "wordCount": 20,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex3",
+      "excerptLabel": "Excerpt 3 · Taylor Street, Tenderloin (18:50–20:18)",
+      "excerptStart": 1130,
+      "excerptEnd": 1218
+    },
+    {
+      "id": "SRC-56b64a3add",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1159,
+      "speaker": "Female Co-Interviewer",
+      "speakerVerified": true,
+      "text": "And do you live together with this man?",
+      "wordCount": 8,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex3",
+      "excerptLabel": "Excerpt 3 · Taylor Street, Tenderloin (18:50–20:18)",
+      "excerptStart": 1130,
+      "excerptEnd": 1218
+    },
+    {
+      "id": "SRC-4c0b469bfe",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1161,
+      "speaker": "Rebecca Mallory",
+      "speakerVerified": true,
+      "text": "No, I just kind of move around all over. I used to live right up there.",
+      "wordCount": 16,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex3",
+      "excerptLabel": "Excerpt 3 · Taylor Street, Tenderloin (18:50–20:18)",
+      "excerptStart": 1130,
+      "excerptEnd": 1218
+    },
+    {
+      "id": "SRC-0884645810",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1176,
+      "speaker": "Zhan Petrov",
+      "speakerVerified": true,
+      "text": "Do you take drugs? Are you getting any help from the government?",
+      "wordCount": 12,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex3",
+      "excerptLabel": "Excerpt 3 · Taylor Street, Tenderloin (18:50–20:18)",
+      "excerptStart": 1130,
+      "excerptEnd": 1218
+    },
+    {
+      "id": "SRC-dae03d06d6",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1181,
+      "speaker": "Rebecca Mallory",
+      "speakerVerified": true,
+      "text": "Yeah. A little bit—I get food stamps, about $300 a month, not cash.",
+      "wordCount": 13,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex3",
+      "excerptLabel": "Excerpt 3 · Taylor Street, Tenderloin (18:50–20:18)",
+      "excerptStart": 1130,
+      "excerptEnd": 1218
+    },
+    {
+      "id": "SRC-4ebf9a6345",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1190,
+      "speaker": "Zhan Petrov",
+      "speakerVerified": true,
+      "text": "Did you finish school? Did you get enrolled in college?",
+      "wordCount": 10,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex3",
+      "excerptLabel": "Excerpt 3 · Taylor Street, Tenderloin (18:50–20:18)",
+      "excerptStart": 1130,
+      "excerptEnd": 1218
+    },
+    {
+      "id": "SRC-2b4dcc8dca",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1192,
+      "speaker": "Rebecca Mallory",
+      "speakerVerified": true,
+      "text": "Yeah, I graduated two years early. I went to college a little bit, not a lot.",
+      "wordCount": 16,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex3",
+      "excerptLabel": "Excerpt 3 · Taylor Street, Tenderloin (18:50–20:18)",
+      "excerptStart": 1130,
+      "excerptEnd": 1218
+    },
+    {
+      "id": "SRC-fbdef35149",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1367,
+      "speaker": "Man Under Shelter (60)",
+      "speakerVerified": true,
+      "text": "This is the most stressful, the most frustrating part about being outside and trying to give an interview to you guys: the wind—my worst enemy—and the rain—my worst nightmare. A hole in your structure, it’s traumatic, it’s like a tsunami. This right here is just handmade, you know.",
+      "wordCount": 48,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex4",
+      "excerptLabel": "Excerpt 4 · Sidewalk Shelter (22:45–23:45)",
+      "excerptStart": 1365,
+      "excerptEnd": 1425
+    },
+    {
+      "id": "SRC-2595f912fe",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1391,
+      "speaker": "Zhan Petrov",
+      "speakerVerified": true,
+      "text": "How old are you?",
+      "wordCount": 4,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex4",
+      "excerptLabel": "Excerpt 4 · Sidewalk Shelter (22:45–23:45)",
+      "excerptStart": 1365,
+      "excerptEnd": 1425
+    },
+    {
+      "id": "SRC-c315334add",
+      "workshopId": "yt_QgwRsArIVKI",
+      "youtubeId": "QgwRsArIVKI",
+      "seconds": 1392,
+      "speaker": "Man Under Shelter (60)",
+      "speakerVerified": true,
+      "text": "About 60 years old, ashamed to say. I’ve been on drugs 40-something years: cocaine powder at 16, 17, 18 years old; 19 to now, crack cocaine only, a little speed. Got sick off fentanyl accidentally—stayed in the hospital a couple days, took me about a week and a half to get well. My stomach was tore up, it felt like hell, liquid diet for a week and a half, and that weekend whoever was on duty that shift robbed me and took my money.",
+      "wordCount": 84,
+      "themes": [
+        "identity",
+        "truth"
+      ],
+      "excerptId": "ex4",
+      "excerptLabel": "Excerpt 4 · Sidewalk Shelter (22:45–23:45)",
+      "excerptStart": 1365,
+      "excerptEnd": 1425
     },
     {
       "id": "SRC-0a9396d579",

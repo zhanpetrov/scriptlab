@@ -128,18 +128,24 @@ def fetch_youtube_captions(video_id: str, lang: str = "en", custom_speaker: str 
             if clean:
                 segs.append((start, dur, clean))
 
+    abbrev_re = re.compile(
+        r"(?:\b(?:U\.S|U\.K|U\.N|Mr|Mrs|Ms|Dr|Prof|Sr|Jr|St|vs|etc|e\.g|i\.e|Inc|Ltd|Corp|Gov|Sen|Rep|Gen|Col|Lt|Sgt|Capt|Rev|Hon|Ph\.D|a\.m|p\.m|No|Fig|Jan|Feb|Mar|Apr|Aug|Sept|Oct|Nov|Dec)|(?:^|\s)[A-Z])\.[\"”)]?$",
+        re.I,
+    )
     speaker = (custom_speaker or author or "SPEAKER").strip()
     merged: list[dict[str, Any]] = []
     cur: dict[str, Any] | None = None
     for st, dur, txt in segs:
         if cur is None:
             cur = {"start": st, "end": st + dur, "text": txt}
-        elif (st - cur["end"] > 2.0) or (re.search(r'[.?!]["”]?$', cur["text"]) and len(cur["text"].split()) >= 7) or len(cur["text"].split()) >= 26:
-            merged.append(cur)
-            cur = {"start": st, "end": st + dur, "text": txt}
         else:
-            cur["text"] = f"{cur['text']} {txt}".strip()
-            cur["end"] = max(cur["end"], st + dur)
+            ends_sentence = bool(re.search(r'[.?!]["”)]?$', cur["text"])) and not bool(abbrev_re.search(cur["text"]))
+            if (st - cur["end"] > 2.0) or (ends_sentence and len(cur["text"].split()) >= 7) or len(cur["text"].split()) >= 26:
+                merged.append(cur)
+                cur = {"start": st, "end": st + dur, "text": txt}
+            else:
+                cur["text"] = f"{cur['text']} {txt}".strip()
+                cur["end"] = max(cur["end"], st + dur)
     if cur:
         merged.append(cur)
 

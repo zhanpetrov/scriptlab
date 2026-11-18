@@ -63,7 +63,7 @@ window.SCRIPTLAB_CONFIG = {
     },
     lifetime: {
       id: "lifetime",
-      name: "220 Lab Founding Pass",
+      name: "Founding Pass",
       badge: "Limited · First 100 Filmmakers",
       price: "$249",
       period: "one-time",
@@ -72,6 +72,7 @@ window.SCRIPTLAB_CONFIG = {
     },
   },
 
+  // [ZHAN: hello@scriptlab.cloud?]
   CONTACT_EMAIL: "zhanpetrov8@gmail.com",
-  STUDIO_CREDITS: "220 Lab · Created by Zhan Petrov",
+  STUDIO_CREDITS: "A film by Zhan Petrov / 220 Lab",
 };

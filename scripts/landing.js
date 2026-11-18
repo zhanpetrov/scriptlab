@@ -58,53 +58,109 @@
     }
   } catch (e) {}
 
+  // ---------- 1B. Built From a Real Film — Trailer Player ----------
+  const filmVideo = document.getElementById("film-trailer-video");
+  const filmOverlay = document.getElementById("film-trailer-overlay");
+  const filmSoundBtn = document.getElementById("film-trailer-sound-btn");
+  const filmSilentBtn = document.getElementById("film-trailer-silent-btn");
+
+  if (filmVideo && filmSoundBtn) {
+    const startWithSound = () => {
+      filmVideo.muted = false;
+      filmVideo.loop = false;
+      filmVideo.controls = true;
+      if (filmOverlay) filmOverlay.classList.add("is-hidden");
+      const p = filmVideo.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+      window.SLAnalytics?.track("howisee_trailer_played", { mode: "sound" });
+    };
+
+    filmSoundBtn.addEventListener("click", startWithSound);
+
+    if (filmSilentBtn) {
+      filmSilentBtn.addEventListener("click", () => {
+        filmVideo.muted = true;
+        filmVideo.loop = true;
+        filmVideo.controls = false;
+        const p = filmVideo.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+        filmSilentBtn.textContent = "Playing silently (muted)";
+        window.SLAnalytics?.track("howisee_trailer_played", { mode: "silent" });
+      });
+    }
+
+    filmVideo.addEventListener("ended", () => {
+      if (!filmVideo.loop && filmOverlay) {
+        filmOverlay.classList.remove("is-hidden");
+      }
+    });
+  }
+
   // ---------- 2. Interactive Live Workbench Showcase ----------
   const sources = STARTER.sources || [];
   const allLines = STARTER.lines || [];
   const charMap = Object.assign({}, STARTER.defaultCharacterMap || {});
+  const HOWISEE_INTERVIEWS_URL =
+    "https://howisee.homes/?utm_source=scriptlab&utm_medium=site&utm_campaign=howisee#interviews";
 
   let activeSourceId = sources[0]?.id || "";
   let demoQuery = "";
-  let activeLine = allLines[0] || null;
+  let activeLine = allLines.find((l) => l.workshopId === activeSourceId && l.speaker.includes("Shelter")) || allLines[0] || null;
   let ytPlayer = null;
   let ytReady = false;
+  let excerptGuardTimer = null;
+
+  function getSourceById(id) {
+    return sources.find((s) => s.id === id) || sources[0] || null;
+  }
+
+  function isExcerptLine(line) {
+    return Boolean(line && Number.isFinite(Number(line.excerptEnd)));
+  }
 
   function buildInitialDemoElements() {
-    const wgad1 = allLines.find((l) => l.youtubeId === "7Q_azoXi0Jw" && l.seconds >= 4) || allLines[0];
-    const wgad2 = allLines.find((l) => l.youtubeId === "7Q_azoXi0Jw" && l.seconds >= 25) || allLines[1];
+    const lShelter =
+      allLines.find((l) => l.youtubeId === "QgwRsArIVKI" && l.speaker.includes("Shelter")) || allLines[0];
+    const lMilo =
+      allLines.find((l) => l.youtubeId === "QgwRsArIVKI" && l.speaker.includes("Milo") && l.wordCount >= 12) ||
+      allLines[1];
     const els = [
       {
         id: "d-act-1",
         type: "action",
-        text: "ANCHORAGE TARMAC — NIGHT. Rain streaks across the fuselage window as refueling trucks pull clear of the wing.",
+        text: "San Francisco’s Tenderloin after dark. Black-and-white handheld camera at eye level along Taylor Street and the Muni tracks. Wind rattles a handmade sidewalk shelter.",
       },
     ];
-    if (wgad1) {
+    if (lShelter) {
       els.push({
         id: "d-el-1",
         type: "dialogue",
         mode: "ORIGINAL",
-        srcId: wgad1.id,
-        speaker: wgad1.speaker,
-        character: charMap[wgad1.speaker] || "NARRATOR (V.O.)",
-        text: wgad1.text,
-        originalText: wgad1.text,
-        youtubeId: wgad1.youtubeId,
-        seconds: wgad1.seconds,
+        srcId: lShelter.id,
+        speaker: lShelter.speaker,
+        character: charMap[lShelter.speaker] || "MAN UNDER SHELTER",
+        text: lShelter.text,
+        originalText: lShelter.text,
+        youtubeId: lShelter.youtubeId,
+        seconds: lShelter.seconds,
+        excerptStart: lShelter.excerptStart,
+        excerptEnd: lShelter.excerptEnd,
       });
     }
-    if (wgad2) {
+    if (lMilo) {
       els.push({
         id: "d-el-2",
         type: "dialogue",
         mode: "ADAPTED",
-        srcId: wgad2.id,
-        speaker: wgad2.speaker,
-        character: "REPORTER",
-        text: wgad2.text,
-        originalText: wgad2.text,
-        youtubeId: wgad2.youtubeId,
-        seconds: wgad2.seconds,
+        srcId: lMilo.id,
+        speaker: lMilo.speaker,
+        character: charMap[lMilo.speaker] || "TRAVELER",
+        text: "42. I walked from Visalia, California. It took me 30 days—and I just barely made it here tonight. I have a home. I just left.",
+        originalText: lMilo.text,
+        youtubeId: lMilo.youtubeId,
+        seconds: lMilo.seconds,
+        excerptStart: lMilo.excerptStart,
+        excerptEnd: lMilo.excerptEnd,
       });
     }
     return els;
@@ -134,18 +190,30 @@
     const q = demoQuery.trim().toLowerCase();
     const filtered = allLines.filter((l) => {
       if (activeSourceId && l.workshopId !== activeSourceId) return false;
-      if (l.wordCount <= 3) return false;
-      if (q && !`${l.speaker} ${l.text} ${l.id}`.toLowerCase().includes(q)) return false;
+      if (l.wordCount <= 3 && !isExcerptLine(l)) return false;
+      if (q && !`${l.speaker} ${l.text} ${l.id} ${l.excerptLabel || ""}`.toLowerCase().includes(q)) return false;
       return true;
     });
 
     if (countEl) countEl.textContent = `${filtered.length} lines`;
 
+    let lastExcerptId = "";
     listEl.innerHTML = filtered
       .slice(0, 35)
       .map((l) => {
         const isAct = activeLine && activeLine.id === l.id;
+        let groupHeader = "";
+        if (l.excerptId && l.excerptId !== lastExcerptId) {
+          lastExcerptId = l.excerptId;
+          groupHeader = `
+            <div class="sc-excerpt-divider">
+              <span>${esc(l.excerptLabel || "Short Excerpt")}</span>
+              <a href="${HOWISEE_INTERVIEWS_URL}">Full uncut interviews →</a>
+            </div>
+          `;
+        }
         return `
+          ${groupHeader}
           <div class="sc-card ${isAct ? "active" : ""}" data-demo-card="${esc(l.id)}">
             <div class="sc-card-meta">
               <span class="sc-card-spk">${esc(l.speaker)}</span>
@@ -169,13 +237,13 @@
     const paperEl = document.getElementById("demo-paper");
     if (!paperEl) return;
 
-    const srcObj = sources.find((s) => s.id === activeSourceId) || sources[0];
+    const srcObj = getSourceById(activeSourceId);
     const slugLoc =
       srcObj?.youtubeId === "UF8uR6Z6KLc"
         ? "INT. STANFORD STADIUM PODIUM - DAY"
         : srcObj?.youtubeId === "RxiiSR6sZyQ"
           ? "INT. 220 LAB BERKELEY STUDIO - NIGHT"
-          : "INT. PRESS BRIEFING & SERVER ROOM - NIGHT";
+          : "EXT. TENDERLOIN STREET - NIGHT";
 
     const itemsHtml = demoElements
       .map((el, idx) => {
@@ -218,39 +286,73 @@
     `;
   }
 
-  function renderDemoInspector() {
+  function renderDemoInspector(excerptEnded) {
     const box = document.getElementById("demo-inspector");
     if (!box || !activeLine) return;
+    const excerptOnly = isExcerptLine(activeLine);
+    const cue = charMap[activeLine.speaker] || activeLine.speaker.toUpperCase();
+    const linkHtml = excerptOnly
+      ? `<a href="${HOWISEE_INTERVIEWS_URL}" style="color:#f5f5f7;font-weight:600;text-decoration:underline;">Full uncut interviews → howisee.homes</a>`
+      : `<a href="https://youtu.be/${encodeURIComponent(activeLine.youtubeId)}?t=${activeLine.seconds}s" target="_blank" rel="noopener" style="color:#66b3ff;font-weight:600;">Open on YouTube ↗</a>`;
+
     box.innerHTML = `
       <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#ff9f93;margin-bottom:3px;">
-        Verified Source Moment
+        ${excerptOnly ? esc(activeLine.excerptLabel || "HOW I SEE · Short Excerpt") : "Source-Linked Moment"}
       </div>
       <div style="font-weight:700;font-size:13.5px;color:#f5f5f7;margin-bottom:2px;">
-        ${esc(activeLine.speaker)} · <span style="font-family:var(--mono);color:#9ba1b0;">${esc(fmtTc(activeLine.seconds))}</span>
+        ${esc(activeLine.speaker)} → <span style="color:#d4d8e2;">${esc(cue)}</span> · <span style="font-family:var(--mono);color:#9ba1b0;">${esc(fmtTc(activeLine.seconds))}</span>
       </div>
       <div style="font-family:var(--courier);font-size:12.5px;color:#f0ece2;background:#13161c;border-left:3px solid #2ea063;padding:7px 9px;border-radius:4px;margin:6px 0 8px;">
         “${esc(activeLine.text)}”
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;font-size:11.5px;">
+      ${
+        excerptEnded
+          ? `<div style="font-size:11.5px;color:#ffd08a;margin-bottom:6px;">Short excerpt preview ended. Watch all 41:43 (11 chapters) on howisee.homes.</div>`
+          : ""
+      }
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-size:11.5px;">
         <span class="sc-src-tag">${esc(activeLine.id)}</span>
-        <a href="https://youtu.be/${encodeURIComponent(activeLine.youtubeId)}?t=${activeLine.seconds}s" target="_blank" rel="noopener" style="color:#66b3ff;font-weight:600;">
-          Open on YouTube ↗
-        </a>
+        ${linkHtml}
       </div>
     `;
+  }
+
+  function startExcerptGuard(line) {
+    if (excerptGuardTimer) {
+      clearInterval(excerptGuardTimer);
+      excerptGuardTimer = null;
+    }
+    if (!isExcerptLine(line)) return;
+    excerptGuardTimer = setInterval(() => {
+      if (!ytReady || !ytPlayer || typeof ytPlayer.getCurrentTime !== "function") return;
+      try {
+        const t = ytPlayer.getCurrentTime();
+        if (t >= Number(line.excerptEnd)) {
+          ytPlayer.pauseVideo();
+          clearInterval(excerptGuardTimer);
+          excerptGuardTimer = null;
+          const st = document.getElementById("demo-player-status");
+          if (st) st.textContent = "Excerpt ended";
+          renderDemoInspector(true);
+        }
+      } catch (e) {}
+    }, 450);
   }
 
   function playDemoLine(line, autoplay) {
     if (!line) return;
     activeLine = line;
-    renderDemoInspector();
+    renderDemoInspector(false);
     renderDemoArchive();
     if (ytReady && ytPlayer) {
       try {
+        const payload = { videoId: line.youtubeId, startSeconds: line.seconds };
+        if (isExcerptLine(line)) payload.endSeconds = Number(line.excerptEnd);
         if (autoplay) {
-          ytPlayer.loadVideoById({ videoId: line.youtubeId, startSeconds: line.seconds });
+          ytPlayer.loadVideoById(payload);
+          startExcerptGuard(line);
         } else {
-          ytPlayer.cueVideoById({ videoId: line.youtubeId, startSeconds: line.seconds });
+          ytPlayer.cueVideoById(payload);
         }
       } catch (e) {}
     }
@@ -262,9 +364,18 @@
         clearInterval(timer);
         const host = document.getElementById("landing-yt-player");
         if (!host) return;
+        const pVars = {
+          rel: 0,
+          modestbranding: 1,
+          playsinline: 1,
+          start: activeLine ? activeLine.seconds : 0,
+        };
+        if (isExcerptLine(activeLine)) {
+          pVars.end = Number(activeLine.excerptEnd);
+        }
         ytPlayer = new window.YT.Player("landing-yt-player", {
-          videoId: activeLine ? activeLine.youtubeId : "7Q_azoXi0Jw",
-          playerVars: { rel: 0, modestbranding: 1, playsinline: 1, start: activeLine ? activeLine.seconds : 4 },
+          videoId: activeLine ? activeLine.youtubeId : "QgwRsArIVKI",
+          playerVars: pVars,
           events: {
             onReady: () => {
               ytReady = true;
@@ -272,12 +383,17 @@
             onStateChange: (ev) => {
               const st = document.getElementById("demo-player-status");
               if (!st) return;
-              st.textContent =
-                ev.data === window.YT.PlayerState.PLAYING
-                  ? "Playing"
-                  : ev.data === window.YT.PlayerState.PAUSED
-                    ? "Paused"
-                    : "Ready";
+              if (ev.data === window.YT.PlayerState.PLAYING) {
+                st.textContent = isExcerptLine(activeLine) ? "Playing excerpt" : "Playing";
+                startExcerptGuard(activeLine);
+              } else if (ev.data === window.YT.PlayerState.PAUSED) {
+                st.textContent = "Paused";
+              } else if (ev.data === window.YT.PlayerState.ENDED && isExcerptLine(activeLine)) {
+                st.textContent = "Excerpt ended";
+                renderDemoInspector(true);
+              } else {
+                st.textContent = "Ready";
+              }
             },
           },
         });
@@ -288,7 +404,7 @@
   renderDemoTabs();
   renderDemoArchive();
   renderDemoPaper();
-  renderDemoInspector();
+  renderDemoInspector(false);
   bootDemoPlayer();
 
   // Demo interactions
@@ -579,7 +695,7 @@
         wlResult.className = "status-banner pending";
         wlResult.innerHTML = `
           <strong>Application Received · Queue #${esc(data.queue_number || 1)}</strong><br />
-          <code>${esc(data.email)}</code> is now pending 220 Lab approval. Check your approval status anytime on the right.
+          <code>${esc(data.email)}</code> is now pending 220 Lab approval. Check your approval status anytime in the verification form.
         `;
       }
     } catch (err) {
@@ -653,7 +769,7 @@
 
       chkResult.hidden = false;
       chkResult.className = data.status === "pending" ? "status-banner pending" : "status-banner error";
-      chkResult.textContent = data.error || "Not yet approved. Submit the waitlist form on the left.";
+      chkResult.textContent = data.error || "Not yet approved. Submit the waitlist application form first.";
     } catch (err) {
       chkResult.hidden = false;
       chkResult.className = "status-banner error";
@@ -663,4 +779,11 @@
       btn.textContent = "Verify Access & Launch Studio";
     }
   });
+
+  // Wire contact email from config.js
+  if (CFG.CONTACT_EMAIL) {
+    document.querySelectorAll("[data-contact-email]").forEach((el) => {
+      el.href = `mailto:${CFG.CONTACT_EMAIL}`;
+    });
+  }
 })();

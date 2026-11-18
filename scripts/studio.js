@@ -529,26 +529,26 @@
   function buildStarterState() {
     const charMap = Object.assign({}, STARTER.defaultCharacterMap || {});
     const starterLines = STARTER.lines || [];
-    const lWgad = starterLines.find((l) => l.youtubeId === "7Q_azoXi0Jw" && l.seconds >= 4) || starterLines[0];
-    const lJobs = starterLines.find((l) => l.youtubeId === "UF8uR6Z6KLc" && l.wordCount >= 10) || starterLines[1];
+    const lShelter = starterLines.find((l) => l.youtubeId === "QgwRsArIVKI" && l.speaker.includes("Shelter")) || starterLines[0];
+    const lMilo = starterLines.find((l) => l.youtubeId === "QgwRsArIVKI" && l.speaker.includes("Milo")) || starterLines[1];
 
     const sc1Els = [
       {
         id: uid("el"),
         type: "action",
-        text: "A quiet editing bay. Monitors glow against concrete walls as YouTube archival reels cue up frame by frame.",
+        text: "San Francisco’s Tenderloin after dark. Black-and-white handheld camera at eye level along Taylor Street and the Muni tracks. Wind rattles a handmade sidewalk shelter.",
       },
     ];
-    if (lWgad) sc1Els.push(makeOriginalElementFromLine(lWgad));
-    if (lJobs) sc1Els.push(makeOriginalElementFromLine(lJobs));
+    if (lShelter) sc1Els.push(makeOriginalElementFromLine(lShelter));
+    if (lMilo) sc1Els.push(makeOriginalElementFromLine(lMilo));
 
     const sc1 = createBlankScene({
-      intExt: "INT.",
-      location: "220 LAB EDITING ROOM",
+      intExt: "EXT.",
+      location: "TENDERLOIN STREET",
       timeOfDay: "NIGHT",
       purpose: "Introduction",
       status: "Workshop",
-      notes: "Click '+ Add YouTube Video' in the left Archive to ingest any public or unlisted YouTube video into this screenplay.",
+      notes: "Built from short excerpts of HOW I SEE (howisee.homes). Click '+ Add YouTube Video' in the left Archive to ingest any public or unlisted YouTube video.",
       elements: sc1Els,
     });
 
@@ -1506,12 +1506,15 @@
         const host = document.getElementById("sl-yt-player");
         if (!host || ytPlayer) return;
         const firstSrc = getActiveSources()[0];
-        const initVid = activeMonitorLine ? activeMonitorLine.youtubeId : firstSrc?.youtubeId || "7Q_azoXi0Jw";
+        const initVid = activeMonitorLine ? activeMonitorLine.youtubeId : firstSrc?.youtubeId || "QgwRsArIVKI";
         const initSec = activeMonitorLine ? activeMonitorLine.seconds : 0;
+        const initEnd = activeMonitorLine?.excerptEnd || (initVid === "QgwRsArIVKI" ? 65 : undefined);
+        const pVars = { rel: 0, modestbranding: 1, playsinline: 1, start: initSec };
+        if (initEnd) pVars.end = initEnd;
 
         ytPlayer = new window.YT.Player("sl-yt-player", {
           videoId: initVid,
-          playerVars: { rel: 0, modestbranding: 1, playsinline: 1, start: initSec },
+          playerVars: pVars,
           events: {
             onReady: () => {
               ytReady = true;
@@ -1546,10 +1549,12 @@
       return;
     }
     try {
+      const payload = { videoId: line.youtubeId, startSeconds: Math.max(0, Number(line.seconds) || 0) };
+      if (line.excerptEnd) payload.endSeconds = Number(line.excerptEnd);
       if (autoplay) {
-        ytPlayer.loadVideoById({ videoId: line.youtubeId, startSeconds: Math.max(0, Number(line.seconds) || 0) });
+        ytPlayer.loadVideoById(payload);
       } else {
-        ytPlayer.cueVideoById({ videoId: line.youtubeId, startSeconds: Math.max(0, Number(line.seconds) || 0) });
+        ytPlayer.cueVideoById(payload);
       }
     } catch {}
   }
