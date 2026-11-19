@@ -96,23 +96,21 @@
     });
   }
 
-  // ---------- 2. Interactive Live Workbench Showcase ----------
-  const sources = STARTER.sources || [];
+  // ---------- 2. Interactive Live Workbench Showcase (HOW I SEE Interviews + Biometrics + SF Map) ----------
   const allLines = STARTER.lines || [];
+  const locations = STARTER.locations || [];
+  const biometrics = STARTER.biometrics || { speakers: {} };
   const charMap = Object.assign({}, STARTER.defaultCharacterMap || {});
   const HOWISEE_INTERVIEWS_URL =
     "https://howisee.homes/?utm_source=scriptlab&utm_medium=site&utm_campaign=howisee#interviews";
 
-  let activeSourceId = sources[0]?.id || "";
+  let activeExcerptId = "ALL"; // "ALL" or "ex1".."ex4"
+  let activeSpeakerFilter = ""; // "" or exact speaker name
   let demoQuery = "";
-  let activeLine = allLines.find((l) => l.workshopId === activeSourceId && l.speaker.includes("Shelter")) || allLines[0] || null;
+  let activeLine = allLines.find((l) => l.speaker.includes("Shelter")) || allLines[0] || null;
   let ytPlayer = null;
   let ytReady = false;
   let excerptGuardTimer = null;
-
-  function getSourceById(id) {
-    return sources.find((s) => s.id === id) || sources[0] || null;
-  }
 
   function isExcerptLine(line) {
     return Boolean(line && Number.isFinite(Number(line.excerptEnd)));
@@ -120,15 +118,15 @@
 
   function buildInitialDemoElements() {
     const lShelter =
-      allLines.find((l) => l.youtubeId === "QgwRsArIVKI" && l.speaker.includes("Shelter")) || allLines[0];
+      allLines.find((l) => l.speaker.includes("Shelter")) || allLines[0];
     const lMilo =
-      allLines.find((l) => l.youtubeId === "QgwRsArIVKI" && l.speaker.includes("Milo") && l.wordCount >= 12) ||
+      allLines.find((l) => l.speaker.includes("Milo") && l.wordCount >= 12) ||
       allLines[1];
     const els = [
       {
         id: "d-act-1",
         type: "action",
-        text: "San Francisco’s Tenderloin after dark. Black-and-white handheld camera at eye level along Taylor Street and the Muni tracks. Wind rattles a handmade sidewalk shelter.",
+        text: "San Francisco’s Tenderloin after dark. Black-and-white handheld camera at eye level along Taylor Street, Eddy Street, and the Muni tracks. Wind rattles a handmade sidewalk shelter.",
       },
     ];
     if (lShelter) {
@@ -171,15 +169,172 @@
   function renderDemoTabs() {
     const tabsEl = document.getElementById("demo-source-tabs");
     if (!tabsEl) return;
-    tabsEl.innerHTML = sources
+    const allBtn = `
+      <button type="button" class="showcase-tab ${activeExcerptId === "ALL" && !activeSpeakerFilter ? "active" : ""}" data-demo-excerpt="ALL">
+        All Street Interviews <span style="opacity:0.7;">(${allLines.length})</span>
+      </button>
+    `;
+    const locBtns = locations
       .map(
-        (s) => `
-        <button type="button" class="showcase-tab ${s.id === activeSourceId ? "active" : ""}" data-demo-src="${esc(s.id)}">
-          ${esc(s.shortLabel)} <span style="opacity:0.7;">(${s.lineCount})</span>
+        (loc) => `
+        <button type="button" class="showcase-tab ${activeExcerptId === loc.id ? "active" : ""}" data-demo-excerpt="${esc(loc.id)}">
+          ${esc(loc.tabLabel)} <span style="opacity:0.7;">(${loc.lineCount})</span>
         </button>
       `
       )
       .join("");
+    tabsEl.innerHTML = allBtn + locBtns;
+  }
+
+  function renderSocialMap() {
+    const mapEl = document.getElementById("demo-sf-map");
+    if (!mapEl) return;
+
+    const activeLoc =
+      locations.find((l) => l.id === activeExcerptId) ||
+      locations.find((l) => activeLine && l.id === activeLine.excerptId) ||
+      null;
+
+    const pinsSvg = locations
+      .map((loc, idx) => {
+        const isSel = activeExcerptId === loc.id || (activeExcerptId === "ALL" && activeLine && activeLine.excerptId === loc.id);
+        return `
+          <g class="sc-map-pin ${isSel ? "is-active" : ""}" data-demo-map-pin="${esc(loc.id)}" role="button" tabindex="0" aria-label="${esc(loc.locationLabel)} — ${esc(loc.speaker)}">
+            ${isSel ? `<circle cx="${loc.x}" cy="${loc.y}" r="18" class="sc-pin-pulse"></circle>` : ""}
+            <circle cx="${loc.x}" cy="${loc.y}" r="9" class="sc-pin-dot"></circle>
+            <text x="${loc.x}" y="${loc.y + 3.5}" text-anchor="middle" class="sc-pin-num">${idx + 1}</text>
+            <g transform="translate(${loc.x + 14}, ${loc.y - 10})">
+              <rect x="0" y="0" width="${Math.max(108, loc.tabLabel.length * 6.4 + 14)}" height="20" rx="4" class="sc-pin-tag-bg"></rect>
+              <text x="7" y="13.5" class="sc-pin-tag-txt">${esc(loc.tabLabel)}</text>
+            </g>
+          </g>
+        `;
+      })
+      .join("");
+
+    mapEl.innerHTML = `
+      <svg viewBox="0 0 560 270" class="sc-sf-svg" aria-label="San Francisco Tenderloin and Mission Creek interview map">
+        <defs>
+          <pattern id="sf-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+          </pattern>
+        </defs>
+        <rect width="560" height="270" fill="#090b0f" />
+        <rect width="560" height="270" fill="url(#sf-grid)" />
+
+        <!-- Tenderloin neighborhood highlight -->
+        <rect x="96" y="42" width="224" height="122" rx="10" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.14)" stroke-dasharray="4 4" />
+        <text x="108" y="60" class="sc-map-zone">TENDERLOIN · SAN FRANCISCO</text>
+
+        <!-- Major streets (stylized accurate orientation) -->
+        <line x1="70" y1="88" x2="355" y2="88" stroke="rgba(255,255,255,0.16)" stroke-width="1.5" />
+        <text x="76" y="83" class="sc-map-street">ELLIS ST</text>
+
+        <line x1="70" y1="126" x2="355" y2="126" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+        <text x="76" y="121" class="sc-map-street">EDDY ST</text>
+
+        <line x1="70" y1="154" x2="355" y2="154" stroke="rgba(255,255,255,0.14)" stroke-width="1.2" />
+        <text x="76" y="149" class="sc-map-street">TURK ST</text>
+
+        <line x1="162" y1="36" x2="162" y2="215" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+        <text x="167" y="48" class="sc-map-street">HYDE ST</text>
+
+        <line x1="242" y1="36" x2="242" y2="215" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+        <text x="247" y="48" class="sc-map-street">TAYLOR ST</text>
+
+        <!-- Market St diagonal & Muni Light-Rail Corridor -->
+        <line x1="60" y1="238" x2="420" y2="108" stroke="rgba(255,255,255,0.3)" stroke-width="3" />
+        <line x1="60" y1="238" x2="420" y2="108" stroke="#c93b2b" stroke-width="1" stroke-dasharray="5 5" opacity="0.7" />
+        <text x="316" y="156" transform="rotate(-20 316 156)" class="sc-map-street-strong">MARKET ST · MUNI CORRIDOR</text>
+
+        <!-- Mission Creek water channel -->
+        <path d="M 380 258 Q 435 234 548 214" fill="none" stroke="rgba(102,179,255,0.35)" stroke-width="8" stroke-linecap="round" />
+        <text x="410" y="256" class="sc-map-water">MISSION CREEK / 4TH &amp; KING</text>
+
+        <!-- Tenderloin Museum Landmark (398 Eddy St) -->
+        <g transform="translate(308, 126)">
+          <rect x="-3.5" y="-3.5" width="7" height="7" fill="#ffffff" opacity="0.85" />
+          <text x="8" y="3" text-anchor="start" class="sc-map-landmark">Tenderloin Museum (398 Eddy)</text>
+        </g>
+
+        <!-- Interview Subject Pins -->
+        ${pinsSvg}
+      </svg>
+      <div class="sc-map-caption">
+        ${
+          activeLoc
+            ? `<strong>${esc(activeLoc.locationLabel)}</strong> · ${esc(activeLoc.neighborhood)} <span class="sc-map-coords">${esc(activeLoc.coordsLabel)}</span>`
+            : `<strong>4 San Francisco Street Locations</strong> · Click any pin to inspect voice, face &amp; verbatim transcript`
+        }
+      </div>
+    `;
+  }
+
+  function renderBiometricsPanel() {
+    const panel = document.getElementById("demo-biometrics-panel");
+    if (!panel) return;
+
+    const speakersMap = biometrics.speakers || {};
+    const speakerNames = Object.keys(speakersMap);
+    const focusName =
+      activeSpeakerFilter ||
+      (activeExcerptId !== "ALL"
+        ? locations.find((l) => l.id === activeExcerptId)?.speaker
+        : activeLine?.speaker) ||
+      speakerNames[0];
+    const spk = speakersMap[focusName] || speakersMap[speakerNames[0]];
+
+    const chipsHtml = speakerNames
+      .map((name) => {
+        const item = speakersMap[name];
+        const isSel = name === focusName;
+        return `
+          <button type="button" class="sc-bio-chip ${isSel ? "is-active" : ""}" data-demo-speaker="${esc(name)}">
+            <span class="sc-bio-dot ${item.onCamera ? "oncam" : "offcam"}"></span>
+            <span>${esc(name)}</span>
+          </button>
+        `;
+      })
+      .join("");
+
+    const cue = charMap[spk.name] || spk.character || spk.name.toUpperCase();
+    const faceBadge = spk.face
+      ? `<span class="sc-bio-badge face">✓ FaceNet 512-D · ${esc(spk.face.clusterId)} (On-Camera)</span>`
+      : `<span class="sc-bio-badge offcam">Behind Camera · Audio Only</span>`;
+    const voiceBadge = spk.voice
+      ? `<span class="sc-bio-badge voice">✓ WeSpeaker 256-D · ${esc(spk.voice.clusterId)} (${spk.voice.verifiedTurns} verified turns)</span>`
+      : "";
+
+    panel.innerHTML = `
+      <div class="sc-bio-chips" role="group" aria-label="Filter by recognized speaker">
+        ${chipsHtml}
+      </div>
+
+      <div class="sc-bio-profile">
+        <div class="sc-bio-top">
+          <div>
+            <div class="sc-bio-name">${esc(spk.name)}</div>
+            <div class="sc-bio-loc">📍 ${esc(spk.locationLabel)}</div>
+          </div>
+          <div class="sc-bio-cue">
+            <span>Screenplay Cue</span>
+            <code>${esc(cue)}</code>
+          </div>
+        </div>
+
+        <div class="sc-bio-badges">
+          ${faceBadge}
+          ${voiceBadge}
+        </div>
+
+        <p class="sc-bio-note">${esc(spk.fieldNote)}</p>
+
+        <div class="sc-bio-foot">
+          <span style="opacity:0.78;">Precipice Script Lab biometric architecture</span>
+          <a href="${HOWISEE_INTERVIEWS_URL}">Full 41:43 uncut interviews → howisee.homes</a>
+        </div>
+      </div>
+    `;
   }
 
   function renderDemoArchive() {
@@ -189,17 +344,23 @@
 
     const q = demoQuery.trim().toLowerCase();
     const filtered = allLines.filter((l) => {
-      if (activeSourceId && l.workshopId !== activeSourceId) return false;
-      if (l.wordCount <= 3 && !isExcerptLine(l)) return false;
-      if (q && !`${l.speaker} ${l.text} ${l.id} ${l.excerptLabel || ""}`.toLowerCase().includes(q)) return false;
+      if (activeExcerptId !== "ALL" && l.excerptId !== activeExcerptId) return false;
+      if (activeSpeakerFilter && l.speaker !== activeSpeakerFilter) return false;
+      if (
+        q &&
+        !`${l.speaker} ${l.text} ${l.id} ${l.excerptLabel || ""} ${l.locationLabel || ""} ${l.faceId || ""} ${l.voiceId || ""}`
+          .toLowerCase()
+          .includes(q)
+      ) {
+        return false;
+      }
       return true;
     });
 
-    if (countEl) countEl.textContent = `${filtered.length} lines`;
+    if (countEl) countEl.textContent = `${filtered.length} verified lines`;
 
     let lastExcerptId = "";
     listEl.innerHTML = filtered
-      .slice(0, 35)
       .map((l) => {
         const isAct = activeLine && activeLine.id === l.id;
         let groupHeader = "";
@@ -207,8 +368,8 @@
           lastExcerptId = l.excerptId;
           groupHeader = `
             <div class="sc-excerpt-divider">
-              <span>${esc(l.excerptLabel || "Short Excerpt")}</span>
-              <a href="${HOWISEE_INTERVIEWS_URL}">Full uncut interviews →</a>
+              <span>📍 ${esc(l.excerptLabel || "Short Excerpt")}</span>
+              <a href="${HOWISEE_INTERVIEWS_URL}">Full uncut →</a>
             </div>
           `;
         }
@@ -218,6 +379,11 @@
             <div class="sc-card-meta">
               <span class="sc-card-spk">${esc(l.speaker)}</span>
               <span class="sc-card-tc">${esc(fmtTc(l.seconds))}</span>
+            </div>
+            <div class="sc-card-biometrics">
+              ${l.faceId ? `<span class="sc-mini-tag face">${esc(l.faceId)}</span>` : `<span class="sc-mini-tag offcam">OFF-CAM</span>`}
+              ${l.voiceId ? `<span class="sc-mini-tag voice">${esc(l.voiceId)}</span>` : ""}
+              <span class="sc-mini-tag loc">${esc(l.locationLabel || "Tenderloin, SF")}</span>
             </div>
             <div class="sc-card-txt">${esc(l.text)}</div>
             <div class="sc-card-actions">
@@ -237,13 +403,8 @@
     const paperEl = document.getElementById("demo-paper");
     if (!paperEl) return;
 
-    const srcObj = getSourceById(activeSourceId);
-    const slugLoc =
-      srcObj?.youtubeId === "UF8uR6Z6KLc"
-        ? "INT. STANFORD STADIUM PODIUM - DAY"
-        : srcObj?.youtubeId === "RxiiSR6sZyQ"
-          ? "INT. 220 LAB BERKELEY STUDIO - NIGHT"
-          : "EXT. TENDERLOIN STREET - NIGHT";
+    const locObj = locations.find((l) => l.id === activeExcerptId);
+    const slugLoc = locObj ? locObj.slugline : "EXT. TENDERLOIN STREET - NIGHT";
 
     const itemsHtml = demoElements
       .map((el, idx) => {
@@ -289,18 +450,18 @@
   function renderDemoInspector(excerptEnded) {
     const box = document.getElementById("demo-inspector");
     if (!box || !activeLine) return;
-    const excerptOnly = isExcerptLine(activeLine);
     const cue = charMap[activeLine.speaker] || activeLine.speaker.toUpperCase();
-    const linkHtml = excerptOnly
-      ? `<a href="${HOWISEE_INTERVIEWS_URL}" style="color:#f5f5f7;font-weight:600;text-decoration:underline;">Full uncut interviews → howisee.homes</a>`
-      : `<a href="https://youtu.be/${encodeURIComponent(activeLine.youtubeId)}?t=${activeLine.seconds}s" target="_blank" rel="noopener" style="color:#66b3ff;font-weight:600;">Open on YouTube ↗</a>`;
+    const bioTags = `${activeLine.faceId ? `${activeLine.faceId} · ` : "OFF-CAM · "}${activeLine.voiceId || "VOICE"} · ${activeLine.locationLabel || "Tenderloin, SF"}`;
 
     box.innerHTML = `
       <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#ff9f93;margin-bottom:3px;">
-        ${excerptOnly ? esc(activeLine.excerptLabel || "HOW I SEE · Short Excerpt") : "Source-Linked Moment"}
+        ${esc(activeLine.excerptLabel || "HOW I SEE · Short Excerpt")}
       </div>
       <div style="font-weight:700;font-size:13.5px;color:#f5f5f7;margin-bottom:2px;">
         ${esc(activeLine.speaker)} → <span style="color:#d4d8e2;">${esc(cue)}</span> · <span style="font-family:var(--mono);color:#9ba1b0;">${esc(fmtTc(activeLine.seconds))}</span>
+      </div>
+      <div style="font-family:var(--mono);font-size:10.5px;color:#6ee7b7;margin-bottom:4px;">
+        ✓ ${esc(bioTags)}
       </div>
       <div style="font-family:var(--courier);font-size:12.5px;color:#f0ece2;background:#13161c;border-left:3px solid #2ea063;padding:7px 9px;border-radius:4px;margin:6px 0 8px;">
         “${esc(activeLine.text)}”
@@ -312,7 +473,7 @@
       }
       <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-size:11.5px;">
         <span class="sc-src-tag">${esc(activeLine.id)}</span>
-        ${linkHtml}
+        <a href="${HOWISEE_INTERVIEWS_URL}" style="color:#f5f5f7;font-weight:600;text-decoration:underline;">Full uncut interviews → howisee.homes</a>
       </div>
     `;
   }
@@ -342,6 +503,8 @@
   function playDemoLine(line, autoplay) {
     if (!line) return;
     activeLine = line;
+    renderSocialMap();
+    renderBiometricsPanel();
     renderDemoInspector(false);
     renderDemoArchive();
     if (ytReady && ytPlayer) {
@@ -356,6 +519,23 @@
         }
       } catch (e) {}
     }
+  }
+
+  function selectExcerptLocation(excerptId) {
+    activeExcerptId = excerptId;
+    activeSpeakerFilter = "";
+    const firstInLoc =
+      excerptId === "ALL"
+        ? allLines.find((l) => l.speaker.includes("Shelter")) || allLines[0]
+        : allLines.find((l) => l.excerptId === excerptId && l.onCamera) ||
+          allLines.find((l) => l.excerptId === excerptId);
+    renderDemoTabs();
+    renderSocialMap();
+    renderBiometricsPanel();
+    renderDemoArchive();
+    renderDemoPaper();
+    if (firstInLoc) playDemoLine(firstInLoc, false);
+    window.SLAnalytics?.track("preview_location_selected", { excerptId });
   }
 
   function bootDemoPlayer() {
@@ -384,7 +564,7 @@
               const st = document.getElementById("demo-player-status");
               if (!st) return;
               if (ev.data === window.YT.PlayerState.PLAYING) {
-                st.textContent = isExcerptLine(activeLine) ? "Playing excerpt" : "Playing";
+                st.textContent = "Playing excerpt";
                 startExcerptGuard(activeLine);
               } else if (ev.data === window.YT.PlayerState.PAUSED) {
                 st.textContent = "Paused";
@@ -402,6 +582,8 @@
   }
 
   renderDemoTabs();
+  renderSocialMap();
+  renderBiometricsPanel();
   renderDemoArchive();
   renderDemoPaper();
   renderDemoInspector(false);
@@ -409,15 +591,36 @@
 
   // Demo interactions
   document.getElementById("live-preview")?.addEventListener("click", (e) => {
-    const srcBtn = e.target.closest("[data-demo-src]");
-    if (srcBtn) {
-      activeSourceId = srcBtn.dataset.demoSrc;
-      const firstInSrc = allLines.find((l) => l.workshopId === activeSourceId && l.wordCount > 3);
+    const exBtn = e.target.closest("[data-demo-excerpt]");
+    if (exBtn) {
+      selectExcerptLocation(exBtn.dataset.demoExcerpt);
+      return;
+    }
+
+    const pinBtn = e.target.closest("[data-demo-map-pin]");
+    if (pinBtn) {
+      selectExcerptLocation(pinBtn.dataset.demoMapPin);
+      return;
+    }
+
+    const spkBtn = e.target.closest("[data-demo-speaker]");
+    if (spkBtn) {
+      const name = spkBtn.dataset.demoSpeaker;
+      const spkObj = biometrics.speakers?.[name];
+      activeSpeakerFilter = activeSpeakerFilter === name ? "" : name;
+      if (activeSpeakerFilter && spkObj && spkObj.excerptId && spkObj.excerptId !== "all") {
+        activeExcerptId = spkObj.excerptId;
+      } else if (!activeSpeakerFilter) {
+        activeExcerptId = "ALL";
+      }
+      const firstLine = allLines.find((l) => l.speaker === name) || allLines[0];
       renderDemoTabs();
+      renderSocialMap();
+      renderBiometricsPanel();
       renderDemoArchive();
       renderDemoPaper();
-      if (firstInSrc) playDemoLine(firstInSrc, false);
-      window.SLAnalytics?.track("preview_source_switched", { sourceId: activeSourceId });
+      if (firstLine) playDemoLine(firstLine, false);
+      window.SLAnalytics?.track("preview_speaker_selected", { speaker: name });
       return;
     }
 

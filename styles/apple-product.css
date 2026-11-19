@@ -1705,3 +1705,399 @@ button {
   }
 }
 
+/* ---------- Social Field Map + Face & Voice Biometrics Strip ---------- */
+.sc-social-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  background: #101318;
+  border-bottom: 1px solid #262b36;
+}
+
+@media (max-width: 920px) {
+  .sc-social-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sc-map-card,
+.sc-bio-card {
+  min-width: 0;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sc-map-card {
+  border-right: 1px solid #262b36;
+}
+
+@media (max-width: 920px) {
+  .sc-map-card {
+    border-right: 0;
+    border-bottom: 1px solid #262b36;
+  }
+}
+
+.sc-social-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 9px 14px;
+  background: #151921;
+  border-bottom: 1px solid #242934;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #e4e7ef;
+}
+
+.sc-social-sub {
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #8f96a6;
+}
+
+.sc-bio-models {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: #6ee7b7;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.sc-map-stage {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sc-sf-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid #272d3a;
+  background: #090b0f;
+}
+
+.sc-map-zone {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  fill: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.1em;
+}
+
+.sc-map-street {
+  font-family: var(--mono);
+  font-size: 8px;
+  fill: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.08em;
+}
+
+.sc-map-street-strong {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  fill: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.08em;
+}
+
+.sc-map-water {
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 700;
+  fill: #7cc4ff;
+  letter-spacing: 0.06em;
+}
+
+.sc-map-landmark {
+  font-family: var(--font);
+  font-size: 8.5px;
+  fill: #d6dae4;
+}
+
+.sc-map-pin {
+  cursor: pointer;
+  outline: none;
+}
+
+.sc-pin-dot {
+  fill: #242a36;
+  stroke: #ffffff;
+  stroke-width: 1.8;
+  transition: fill 0.16s ease;
+}
+
+.sc-map-pin:hover .sc-pin-dot,
+.sc-map-pin.is-active .sc-pin-dot {
+  fill: #c93b2b;
+  stroke: #ffffff;
+}
+
+.sc-pin-pulse {
+  fill: rgba(201, 59, 43, 0.28);
+  stroke: rgba(201, 59, 43, 0.65);
+  stroke-width: 1.2;
+}
+
+.sc-pin-num {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  fill: #ffffff;
+  pointer-events: none;
+}
+
+.sc-pin-tag-bg {
+  fill: rgba(14, 17, 23, 0.92);
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 1;
+}
+
+.sc-map-pin.is-active .sc-pin-tag-bg {
+  fill: #ffffff;
+  stroke: #ffffff;
+}
+
+.sc-pin-tag-txt {
+  font-family: var(--font);
+  font-size: 9.5px;
+  font-weight: 600;
+  fill: #f0f2f7;
+  pointer-events: none;
+}
+
+.sc-map-pin.is-active .sc-pin-tag-txt {
+  fill: #090b0f;
+}
+
+.sc-map-caption {
+  font-size: 12px;
+  color: #b7becd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sc-map-caption strong {
+  color: #ffffff;
+}
+
+.sc-map-coords {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: #8f96a6;
+}
+
+.sc-bio-body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  flex: 1;
+}
+
+.sc-bio-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sc-bio-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #171b24;
+  border: 1px solid #2c3342;
+  color: #d6dae4;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.sc-bio-chip:hover {
+  background: #222836;
+  color: #ffffff;
+}
+
+.sc-bio-chip.is-active {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #090b0f;
+}
+
+.sc-bio-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sc-bio-dot.oncam {
+  background: #10b981;
+}
+
+.sc-bio-dot.offcam {
+  background: #94a3b8;
+}
+
+.sc-bio-profile {
+  background: #161a22;
+  border: 1px solid #282f3d;
+  border-radius: 10px;
+  padding: 12px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+}
+
+.sc-bio-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sc-bio-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.sc-bio-loc {
+  font-size: 12px;
+  color: #9ba3b4;
+  margin-top: 2px;
+}
+
+.sc-bio-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8f96a6;
+}
+
+.sc-bio-cue code {
+  font-family: var(--courier);
+  font-size: 12px;
+  font-weight: 700;
+  color: #f6f1e5;
+  background: #0d1016;
+  border: 1px solid #2e3545;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.sc-bio-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sc-bio-badge {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+
+.sc-bio-badge.face {
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #6ee7b7;
+}
+
+.sc-bio-badge.voice {
+  background: rgba(56, 189, 248, 0.13);
+  border: 1px solid rgba(56, 189, 248, 0.36);
+  color: #7dd3fc;
+}
+
+.sc-bio-badge.offcam {
+  background: rgba(148, 163, 184, 0.14);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: #cbd5e1;
+}
+
+.sc-bio-note {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #c7cddb;
+}
+
+.sc-bio-foot {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid #252b38;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: #9ba3b4;
+}
+
+.sc-bio-foot a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Biometric micro-tags inside Dialogue Archive cards */
+.sc-card-biometrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.sc-mini-tag {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.sc-mini-tag.face {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.32);
+}
+
+.sc-mini-tag.voice {
+  background: rgba(56, 189, 248, 0.14);
+  color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.sc-mini-tag.offcam {
+  background: rgba(148, 163, 184, 0.14);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+}
+
+.sc-mini-tag.loc {
+  background: rgba(255, 255, 255, 0.06);
+  color: #c8cedb;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+
