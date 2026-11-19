@@ -2100,4 +2100,211 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
+/* ---------- Dramatic B&W Cast Portrait Filmstrip (11 Chapters) ---------- */
+.sc-cast-strip {
+  background: #070707;
+  border-bottom: 1px solid #262b36;
+  padding: 12px 14px 14px;
+}
+
+.sc-cast-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.sc-cast-title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sc-cast-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+}
+
+.sc-cast-meta {
+  font-size: 11.5px;
+  color: #8f96a6;
+}
+
+.sc-cast-rail {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #363d4d #0c0e12;
+}
+
+.sc-cast-card {
+  flex: 0 0 156px;
+  text-align: left;
+  background: #101216;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9px;
+  overflow: hidden;
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.sc-cast-card:hover {
+  border-color: rgba(255, 255, 255, 0.42);
+  transform: translateY(-2px);
+}
+
+.sc-cast-card.is-active {
+  border-color: #c93b2b;
+  box-shadow: 0 0 0 2px rgba(201, 59, 43, 0.38);
+}
+
+.sc-cast-img-wrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #000000;
+  overflow: hidden;
+}
+
+.sc-cast-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%) contrast(1.22);
+  transition: transform 0.25s ease;
+}
+
+.sc-cast-card:hover .sc-cast-img-wrap img {
+  transform: scale(1.04);
+}
+
+.sc-cast-num {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.78);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.sc-cast-face-hud {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: #6ee7b7;
+  background: rgba(7, 12, 10, 0.84);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.sc-cast-info {
+  padding: 7px 8px 8px;
+}
+
+.sc-cast-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sc-cast-loc {
+  font-size: 10.5px;
+  color: #9ba3b4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+/* ---------- Large Portrait inside Biometric Dossier ---------- */
+.sc-bio-dossier {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr);
+  gap: 12px;
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .sc-bio-dossier {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sc-bio-portrait {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #000000;
+  min-height: 168px;
+}
+
+.sc-bio-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%) contrast(1.25);
+}
+
+.sc-bio-portrait-tag {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+/* Archive speaker face avatar */
+.sc-card-spk-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.sc-card-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  filter: grayscale(100%) contrast(1.2);
+  flex-shrink: 0;
+}
+
+.sc-card-avatar.offcam-dot {
+  display: inline-grid;
+  place-items: center;
+  background: #1e2430;
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+
 
